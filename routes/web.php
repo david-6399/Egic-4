@@ -1,5 +1,11 @@
 <?php
 
+use App\Livewire\User\About;
+use App\Livewire\User\Contact;
+use App\Livewire\User\Event;
+use App\Livewire\User\Formation;
+use App\Livewire\User\Home;
+use App\Livewire\User\MyCart;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +19,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
+// Route::view('/', 'User.home');
+// Route::view('/about', 'User.home');
+
+
+route::get('/', Home::class);
+route::get('/about', About::class);
+route::get('/contact', Contact::class);
+route::get('/mycart', MyCart::class);
+route::get('/formation', Formation::class);
+route::get('/evenement', Event::class);
 
 
 
