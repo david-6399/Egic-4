@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->text('contenu');
             $table->foreignId('user_id');
+            $table->foreignId('cod_formation')->nullable();
+            $table->foreignId('cod_event')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('cod_formation')->references('id')->on('formations');
+            $table->foreign('cod_event')->references('id')->on('events');
         });
     }
 

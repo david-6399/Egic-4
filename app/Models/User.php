@@ -41,4 +41,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function nivEtud(){
+        return $this->hasOne(nivEtud::class, 'user_id' , 'id');
+    }
+
+    public function comments(){
+        return $this->hasMany(comment::class,'user_id' , 'id');
+    }
+
+    public function formations(){
+        return $this->belongsToMany(formation::class, 'user_formations', 'user_id', 'formation_id');
+    }
+
+    public function events(){
+        return $this->belongsToMany(event::class, 'user_events', 'user_id', 'event_id');
+    }
 }

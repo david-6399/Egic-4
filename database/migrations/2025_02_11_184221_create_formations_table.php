@@ -19,11 +19,10 @@ return new class extends Migration
             $table->integer('favoris')->default(0);
             $table->string('image_path')->nullable();
             $table->foreignId('cod_typeformation');
-            $table->foreignId('cod_program')->unique();
             $table->timestamps();
             
             $table->foreign('cod_typeformation')->references('id')->on('type_formations');
-            $table->foreign('cod_program')->references('id')->on('programs');
+            
         });
     }
 

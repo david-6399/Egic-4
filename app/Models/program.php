@@ -10,8 +10,17 @@ class program extends Model
     use HasFactory;
 
     protected $fillable =[
-        'titre'
+        'titre',
+        'cod_formation',
     ];
 
     protected $table = 'programs';
+
+
+    public function formation(){
+        return $this->belongsTo(formation::class, 'cod_formation' , 'id');
+    }
+    public function module(){
+        return $this->hasOne(module::class, 'cod_program' , 'id');
+    }
 }

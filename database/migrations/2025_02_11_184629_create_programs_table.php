@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
+            $table->foreignId('cod_formation');
             $table->timestamps();
+
+            $table->foreign('cod_formation')->references('id')->on('formations');
         });
     }
 

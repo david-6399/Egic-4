@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('debouches', function (Blueprint $table) {
+        Schema::create('user_formations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->foreignId('cod_formation');
+            $table->foreignId('user_id');
+            $table->foreignId('formation_id');
             $table->timestamps();
 
-            $table->foreign('cod_formation')->references('id')->on('formations');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('formation_id')->references('id')->on('formations');
+
+            $table->unique(['user_id', 'formation_id']);
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('debouches');
+        Schema::dropIfExists('user_formations');
     }
 };

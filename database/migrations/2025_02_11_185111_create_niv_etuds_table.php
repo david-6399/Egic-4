@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('niv_etuds', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('user_id')->unique();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
