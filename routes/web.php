@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin\Formations\Formation as FormationsFormation;
 use App\Livewire\User\About;
 use App\Livewire\User\Contact;
 use App\Livewire\User\Event;
@@ -30,6 +31,14 @@ route::get('/mycart', MyCart::class);
 route::get('/formation', Formation::class);
 route::get('/evenement', Event::class);
 
+
+// route::prefix('admin')->groupe(function(){
+//     route::get('/formation', Formation::class);
+// });
+
+route::group(['prefix'=>'admin'], function (){
+    route::get('/formation', FormationsFormation::class);
+});
 
 
 Route::view('dashboard', 'dashboard')
