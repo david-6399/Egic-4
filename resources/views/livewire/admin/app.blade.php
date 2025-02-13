@@ -119,11 +119,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="wrapper">
 
         <!-- Navbar -->
-        @include('admin.topnav')
+        @include('livewire.admin.topnav')
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->        
-        @include('admin.leftside')
+        @include('livewire.admin.leftside')
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper p-3 ">
             <!-- Main content -->
@@ -133,7 +133,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- /.content-wrapper -->
 
         <!-- Control Sidebar -->
-        @include('admin.rightside')
+        @include('livewire.admin.rightside')
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->

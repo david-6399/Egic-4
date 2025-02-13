@@ -8,8 +8,8 @@ class Formation extends Component
 {
     public function render()
     {
-        return view('admin.formations.list')
-                ->extends('admin.app')
+        return view('livewire.admin.formations.index')
+                ->extends('livewire.admin.app')
                 ->section('content');
     }
 }
