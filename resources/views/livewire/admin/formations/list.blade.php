@@ -1,6 +1,6 @@
 
 
-    <div class="row m-1 btn btn-danger "">
+    <div class="row m-1 btn btn-danger " wire:click='test()'>
         Back To product List
         <i class="nav-icon fas fa-user-alt ml-2"></i>
     </div>

@@ -152,7 +152,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
-
+    <script>
+        window.addEventListener('test', event=>{
+            Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        })
+    </script>
 </body>
 
 </html>
