@@ -10,12 +10,12 @@ class formation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'formation_name',
+        'nome',
         'duree',
         'tarif',
         'favoris',
         'image_path',
-        'cod_typeformation',
+        'typeFormation',
     ];
 
     protected $table = 'formations';
@@ -23,7 +23,7 @@ class formation extends Model
     protected $primary = 'id';
 
     public function typeFormation(){
-        return $this->belongsTo(typeFormation::class, 'cod_typeformation' , 'id');
+        return $this->belongsTo(typeFormation::class, 'typeFormation' , 'id');
     }
 
     public function programs(){

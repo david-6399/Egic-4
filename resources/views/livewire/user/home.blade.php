@@ -7,13 +7,13 @@
                 en
                 Algérie.</h2>
             @if (auth()->check())
-                @if (auth()->user()->usertype == 3)
+                {{-- @if (auth()->user()->usertype == 3) --}}
                     <a href="/course" class="btn btn-get-started">Consultés Les Formations</a>
-                @elseif(auth()->user()->usertype != 1)
+                {{-- @elseif(auth()->user()->usertype != 1) --}}
                     <div class="btn btn-get-started">
-                        @livewire('checkstudient')
+                        {{-- @livewire('checkstudient') --}}
                     </div>
-                @endif
+                {{-- @endif --}}
             @else
                 <a href="/login" class="btn btn-get-started">Bienvenu</a>
             @endif

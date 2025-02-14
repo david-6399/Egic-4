@@ -27,9 +27,9 @@
                         @if (auth::user()->usertype == 1)
                             <a href="/dashboard" class="dropdown-item">Dashboard</a>
                         @endif
-                        @if(auth::user()->usertype == 0 || auth::user()->usertype == 2)
+                        {{-- @if(auth::user()->usertype == 0 || auth::user()->usertype == 2)
                             @livewire('checkstudient')
-                        @endif
+                        @endif --}}
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">

@@ -10,7 +10,7 @@ class debouche extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'titre',
         'description',
         'cod_formation'
     ];

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('debouches', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
+            $table->string('titre');
+            $table->string('description')->nullable();
             $table->foreignId('cod_formation');
             $table->timestamps();
 

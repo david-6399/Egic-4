@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('formations', function (Blueprint $table) {
             $table->id();
-            $table->string('formation_name');
+            $table->string('nome');
             $table->integer('duree');
             $table->integer('tarif');
             $table->integer('favoris')->default(0);
             $table->string('image_path')->nullable();
-            $table->foreignId('cod_typeformation');
+            
+            $table->foreignId('typeFormation')->constrained('formations');
             $table->timestamps();
             
-            $table->foreign('cod_typeformation')->references('id')->on('type_formations');
+            // $table->foreign('typeFormation')->references('id')->on('type_formations');
             
         });
     }
