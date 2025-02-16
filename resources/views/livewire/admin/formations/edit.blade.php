@@ -21,17 +21,17 @@
                                 <label>Formation Name :</label>
                                 <input type="text"
                                     class="form-control border-primary @error('') is-invalid @enderror"
-                                    placeholder="Proudct Name..." wire:model='formation.nome'>
+                                    placeholder="Proudct Name..." wire:model='editFormation.nome'>
                             </div>
                             <div class="form-group">
                                 <label>La Durée de la formation</label>
                                 <input type="number" class="form-control @error('') is-invalid @enderror"
-                                    placeholder="Unit Price..." wire:model='formation.duree'>
+                                    placeholder="Unit Price..." wire:model='editFormation.duree'>
                             </div>
                             <div class="form-group">
                                 <label for="productQuantity">Tarif De la formation</label>
                                 <input type="number" class="form-control @error('') is-invalid @enderror"
-                                    id="productQuantity" placeholder="Quantity..." wire:model='formation.tarif'>
+                                    id="productQuantity" placeholder="Quantity..." wire:model='editFormation.tarif'>
                             </div>
 
                             <div class="input-group">
@@ -70,8 +70,6 @@
     <div class="col-lg-12 ">
         <div class="row">
 
-            
-
             {{-- Start Program section --}}
             <div class="col-lg-6">
                 <form>
@@ -99,6 +97,7 @@
             </div>
             {{-- End Program section --}}
 
+            
             {{-- Start type formation --}}
             <div class="col-lg-6">
                 <form>
@@ -115,7 +114,7 @@
                                 <input type="text" class="form-control" placeholder="Category Name ..." hidden>
                                 <select
                                     class="custom-select form-control-border border-width-2 @error('formation.typeFormation') is-invalid @enderror"
-                                    wire:model='formation.codTypeFormation'>
+                                    wire:model='editFormation.codTypeFormation'>
                                     <option>--------------------------</option>
                                     @foreach ($typeFormations as $type)
                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
@@ -133,6 +132,8 @@
                 </form>
             </div>
             {{-- End type formation --}}
+
+            
 
         </div>
 
@@ -163,5 +164,5 @@
 
 </div>
 <div class="row m-2">
-    <button type="submit" class="btn btn-primary" wire:click='newFormation()'>Update Product</button>
+    <button type="submit" class="btn btn-primary" wire:click='updateFormation()'>Update Product</button>
 </div>

@@ -15,7 +15,7 @@ class formation extends Model
         'tarif',
         'favoris',
         'image_path',
-        'typeFormation',
+        'codTypeFormation',
     ];
 
     protected $table = 'formations';
@@ -23,7 +23,7 @@ class formation extends Model
     protected $primary = 'id';
 
     public function typeFormation(){
-        return $this->belongsTo(typeFormation::class, 'typeFormation' , 'id');
+            return $this->belongsTo(typeFormation::class, 'codTypeFormation' , 'id');
     }
 
     public function programs(){

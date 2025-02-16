@@ -37,7 +37,7 @@ route::get('/evenement', Event::class);
 // });
 
 route::group(['prefix'=>'admin'], function (){
-    route::get('/formation', FormationsFormation::class);
+    route::get('/formation', FormationsFormation::class)->name('formation');
 });
 
 

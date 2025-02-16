@@ -1,5 +1,12 @@
 <div>
-    @include('livewire.admin.formations.create')
+    @if($pageStatus == 'list')
+        @include('livewire.admin.formations.list')
+
+    @elseif($pageStatus == 'create')
+        @include('livewire.admin.formations.create')
+    @elseif ($pageStatus == 'edit')
+        @include('livewire.admin.formations.edit')
+    @endif
 </div>
 
 <script>
