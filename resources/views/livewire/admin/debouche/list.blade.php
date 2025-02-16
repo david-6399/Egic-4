@@ -13,9 +13,9 @@
                         <select class="custom-select" wire:model.live="perPage">
                             {{-- <option>-----</option>                                     --}}
                             <option value="">Chose Per type</option>                                    
-                            @foreach($typeFormations as $type)
-                                <option value="{{$type->id}}"> {{ $type->name }} </option>                                    
-                            @endforeach
+                            
+                                <option value=""> </option>                                    
+                            
                         </select>
                     </div>
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -44,24 +44,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($formations as $formation)
+                       
                             <tr>
-                                <td>{{ $formation->id }}</td>
-                                <td>{{ $formation->nome }}</td>
-                                <td>{{ $formation->duree }}</td>
-                                <td>{{ $formation->tarif }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <span class="badge bg-primary">
-                                        {{ $formation->typeFormation->name }}
+                                        
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-info"
-                                        wire:click='switchToEdit({{ $formation->id }})'>Edit</a>
+                                    <a href="#" class="btn btn-info">Edit</a>
                                     <a href="#" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
-                        @endforeach
+                        
                     </tbody>
                 </table>
             </div>

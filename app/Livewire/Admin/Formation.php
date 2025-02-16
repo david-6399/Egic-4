@@ -1,17 +1,22 @@
 <?php
 
-namespace App\Livewire\Admin\Formations;
+namespace App\Livewire\Admin;
 
 use App\Models\debouche;
 use App\Models\formation as ModelsFormation;
 use App\Models\program;
 use App\Models\typeFormation;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Formation extends Component
 {
+    use WithFileUploads;
 
     public $formation = [];
+
+    public $addImage = null ;
+    public $editImage = null ;
 
     public $editFormation = [];
 
@@ -28,6 +33,8 @@ class Formation extends Component
     public $search = '';
 
     public $pageStatus = 'list';
+
+    public $perPage = '';
     
     
     // start create section
@@ -82,15 +89,22 @@ class Formation extends Component
         }
 
         public function newFormation(){
+
+            $image = $this->addImage->store('formations', 'public');
+            $path = 'storage/'.$image ;
             
             $validateFormation = $this->validate([
                 'formation.nome' => 'required',
                 'formation.duree' => 'required|numeric',
                 'formation.tarif' => 'required|numeric',
                 'formation.codTypeFormation' => 'required|exists:type_formations,id',
+                'addImage' => 'image|max:1024|mimes:jpeg,png,jpg'
             ]);
             
-            $newFormation = ModelsFormation::create($validateFormation['formation']);
+            $newFormation = ModelsFormation::create([
+                ...$validateFormation['formation'],
+                'image_path' => $path
+            ]);
             
             foreach($this->listOfPrograms as $program){
                 program::create([
@@ -109,6 +123,7 @@ class Formation extends Component
             $this->listOfPrograms = [];
             $this->listOfDebouches = [];
             $this->formation = [];
+            $this->addImage = null ;
             
             $this->dispatch('formationCreated');        
             
@@ -123,7 +138,51 @@ class Formation extends Component
         
 
         public function updateFormation(){
-            dd($this->editFormation);
+
+            if($this->editImage != null){
+                $image = $this->editImage->store('formations', 'public');
+                $path = 'storage/'.$image ;
+            }
+            
+
+            $this->validate([
+                'editFormation.nome' => 'required',
+                'editFormation.duree' => 'required|numeric',
+                'editFormation.tarif' => 'required|numeric',
+                'editFormation.codTypeFormation' => 'required|exists:type_formations,id',
+                'editImage' => 'image|max:1024|mimes:jpeg,png,jpg'
+            ]);
+
+            $formation = ModelsFormation::find($this->editFormation['id'])->update([
+                ...$this->editFormation,
+                'image_path' => $this->editImage != null ? $path : $this->editFormation['image_path']
+            ]);
+            
+            program::where('cod_formation', $this->editFormation['id'])->delete();
+
+            foreach($this->listOfPrograms as $program){
+                program::create([
+                    'titre' => $program,
+                    'cod_formation' => $this->editFormation['id']
+                ]);
+            }
+
+            debouche::where('cod_formation', $this->editFormation['id'])->delete();
+
+            foreach($this->listOfDebouches as $debouche){
+                debouche::create([
+                    'titre' => $debouche,
+                    'cod_formation'=> $this->editFormation['id']
+                ]);
+            }
+
+            $this->listOfPrograms = [];
+            $this->listOfDebouches = [];
+            $this->editFormation = [];
+
+            $this->dispatch('formationUpdated');
+            $this->pageStatus = 'list';
+
         }
         
 
@@ -159,7 +218,10 @@ class Formation extends Component
     public function render()
     {
         $typeFormations = \App\Models\typeFormation::all();
-        $formations = ModelsFormation::with('typeFormation')->where('nome', 'like', '%'.$this->search.'%')->get();
+        $formations = ModelsFormation::with('typeFormation')
+                        ->where('nome', 'like', '%'.$this->search.'%')
+                        ->where('codTypeFormation','like','%'.$this->perPage.'%')
+                        ->get();
 
         return view('livewire.admin.formations.index', [
             'typeFormations' => $typeFormations,

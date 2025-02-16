@@ -1,12 +1,16 @@
 <?php
 
+use App\Livewire\Admin\Debouche;
+use App\Livewire\Admin\Formation as AdminFormation;
 use App\Livewire\Admin\Formations\Formation as FormationsFormation;
+use App\Livewire\Admin\Program as AdminProgram;
 use App\Livewire\User\About;
 use App\Livewire\User\Contact;
 use App\Livewire\User\Event;
 use App\Livewire\User\Formation;
 use App\Livewire\User\Home;
 use App\Livewire\User\MyCart;
+use App\Models\program;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +41,9 @@ route::get('/evenement', Event::class);
 // });
 
 route::group(['prefix'=>'admin'], function (){
-    route::get('/formation', FormationsFormation::class)->name('formation');
+    route::get('/formation', AdminFormation::class)->name('formation');
+    route::get('/program', AdminProgram::class)->name('program');
+    route::get('debouche', Debouche::class)->name('debouche');
 });
 
 

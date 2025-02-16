@@ -37,7 +37,7 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{navBarClass('formation','active')}}">
+                    <a href="/admin/formation" class="nav-link {{navBarClass('formation','active')}}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Formations
@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{navBarClass('program','active')}}">
+                    <a href="/admin/program" class="nav-link {{navBarClass('program','active')}}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Programs
@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{navBarClass('débouché','active')}}">
+                    <a href="/admin/debouche" class="nav-link {{navBarClass('debouche','active')}}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Débouchés

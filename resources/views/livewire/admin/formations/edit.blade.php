@@ -37,10 +37,7 @@
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file"
-                                        class="custom-file-input form-control @error('')
-                                is-invalid
-                                @enderror"
-                                        id="productImage">
+                                        class="custom-file-input form-control @error('') is-invalid @enderror" id="productImage" wire:model='editImage'>
                                     @error('addImage')
                                         <div class="text-danger ">
                                             {{ $message }}
@@ -54,10 +51,15 @@
 
                     <div class="col-lg-6">
                         <div class="card-body">
-                            <div class="border" style="height: 300px; width:300px; border-radius:5px">
-                                {{-- @if ($addImage)
-                                    <img src="{{ $addImage->temporaryUrl() }}" style="height: 450px; width:450px ; border-radius : 20px ; border : solid 1px #007BFF">
-                                @endif --}}
+                            <div class="border" style="height: 300px; width:300px; border-radius:20px">
+                                @if(isset($editImage))
+                                    <img src="{{ $editImage->temporaryUrl() }}" class="p-3" style="height: 300px; width:300px ; border-radius : 20px ; border : solid 1px #007BFF">
+                                @else
+                                    <div>
+                                        <img src="{{asset($editFormation['image_path'])}}" class="p-3" style="height: 300px; width:300px ; border-radius : 20px ; border : solid 1px #007BFF">
+                                    </div>
+                                
+                                @endif
                             </div>
                             <div wire:loading wire:target="">Uploading...</div>
                         </div>
@@ -97,7 +99,7 @@
             </div>
             {{-- End Program section --}}
 
-            
+
             {{-- Start type formation --}}
             <div class="col-lg-6">
                 <form>
