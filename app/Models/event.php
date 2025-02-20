@@ -24,7 +24,7 @@ class event extends Model
     // ];
 
     public function comments(){
-        return $this->hasMany(comment::class, 'cod_event' , 'id');
+        return $this->hasMany(comment::class, 'event_id' , 'id');
     }
 
     public function users(){

@@ -150,7 +150,7 @@ class Formation extends Component
                 'editFormation.duree' => 'required|numeric',
                 'editFormation.tarif' => 'required|numeric',
                 'editFormation.codTypeFormation' => 'required|exists:type_formations,id',
-                'editImage' => 'image|max:1024|mimes:jpeg,png,jpg'
+                'editImage' => 'image|max:1024|mimes:jpeg,png,jpg|nullable'
             ]);
 
             $formation = ModelsFormation::find($this->editFormation['id'])->update([

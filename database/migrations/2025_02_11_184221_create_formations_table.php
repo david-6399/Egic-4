@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('favoris')->default(0);
             $table->string('image_path')->nullable();
             
-            $table->foreignId('codTypeFormation')->constrained('formations');
+            $table->foreignId('typeFormation_id')->constrained('formations');
             $table->timestamps();
             
             // $table->foreign('typeFormation')->references('id')->on('type_formations');

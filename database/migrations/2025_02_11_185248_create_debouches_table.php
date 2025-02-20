@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('titre');
             $table->string('description')->nullable();
-            $table->foreignId('cod_formation');
+            $table->foreignId('formation_id');
             $table->timestamps();
 
-            $table->foreign('cod_formation')->references('id')->on('formations');
+            $table->foreign('formation_id')->references('id')->on('formations');
         });
     }
 

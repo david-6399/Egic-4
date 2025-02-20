@@ -11,16 +11,16 @@ class program extends Model
 
     protected $fillable =[
         'titre',
-        'cod_formation',
+        'formation_id',
     ];
 
     protected $table = 'programs';
 
 
     public function formation(){
-        return $this->belongsTo(formation::class, 'cod_formation' , 'id');
+        return $this->belongsTo(formation::class, 'formation_id' , 'id');
     }
     public function module(){
-        return $this->hasOne(module::class, 'cod_program' , 'id');
+        return $this->hasOne(module::class, 'program_id' , 'id');
     }
 }

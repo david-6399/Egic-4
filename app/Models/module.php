@@ -11,11 +11,11 @@ class module extends Model
 
     protected $fillable =[
         'titre',
-        'cod_program',
+        'program_id',
     ];
 
     public function program(){
-        return $this->belongsTo(program::class, 'cod_program' , 'id');
+        return $this->belongsTo(program::class, 'program_id' , 'id');
     }
 
 }

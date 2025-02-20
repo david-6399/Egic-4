@@ -8,14 +8,14 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Fixed Header Table</h3>
-                <div class="card-tools d-flex" >
+                <div class="card-tools d-flex">
                     <div class="input-group input-group-sm mx-3" style="width: 150px;">
                         <select class="custom-select" wire:model.live="perPage">
                             {{-- <option>-----</option>                                     --}}
-                            <option value="">Chose Per type</option>                                    
-                            
-                                <option value=""> </option>                                    
-                            
+                            <option value="">Chose Per type</option>
+
+                            <option value=""> </option>
+
                         </select>
                     </div>
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -37,30 +37,25 @@
                         <tr>
                             <th>ID</th>
                             <th>Formation Name</th>
-                            <th>La durée</th>
-                            <th>Le Tarif</th>
-                            <th>Type de formation</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                       
+                        @foreach ($formations as $formation)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $formation->id }}</td>
+                                <td>{{ $formation->nome }}</td>
                                 <td>
-                                    <span class="badge bg-primary">
-                                        
-                                    </span>
-                                </td>
-                                <td>
+                                    {{-- <a href="#" class="btn btn-warning">Programs</a> --}}
+                                    <button type="button" class="btn btn-warning" data-toggle="modal"
+                                        data-target="#modal_programAndModule" wire:click='modal_programAndModule()'>
+                                        Programs
+                                    </button>
                                     <a href="#" class="btn btn-info">Edit</a>
                                     <a href="#" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
-                        
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -69,3 +64,35 @@
         <!-- /.card -->
     </div>
 </div>
+
+
+<div class="modal fade show" id="modal_programAndModule" style="display: none;" aria-modal="true" role="dialog" wire:ignore.self>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Large Modal</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>One fine body…</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script>
+    window.addEventListener("openModal", event => {
+        $("#modal_programAndModule").modal({
+            "show": true,
+            "backdrop": "static"
+        })
+    })
+</script>

@@ -37,8 +37,8 @@
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file"
-                                        class="custom-file-input form-control @error('') is-invalid @enderror" id="productImage" wire:model='editImage'>
-                                    @error('addImage')
+                                        class="custom-file-input form-control @error('editImage') is-invalid @enderror" id="productImage" wire:model='editImage'>
+                                    @error('editImage')
                                         <div class="text-danger ">
                                             {{ $message }}
                                         </div>

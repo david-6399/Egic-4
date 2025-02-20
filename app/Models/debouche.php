@@ -12,12 +12,12 @@ class debouche extends Model
     protected $fillable = [
         'titre',
         'description',
-        'cod_formation'
+        'formation_id'
     ];
 
     protected $table = 'debouches' ;
 
     public function formation(){
-        return $this->belongsTo(formation::class, 'cod_formation' , 'id');
+        return $this->belongsTo(formation::class, 'formation_id' , 'id');
     }
 }

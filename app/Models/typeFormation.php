@@ -17,6 +17,6 @@ class typeFormation extends Model
     protected $table = 'type_formations';
 
     public function formation(){
-        return $this->hasMany(formation::class, 'typeFormation' , 'id');
+        return $this->hasMany(formation::class, 'typeFormation_id' , 'id');
     }
 }

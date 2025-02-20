@@ -14,7 +14,7 @@ class formation extends Model
         'duree',
         'tarif',
         'favoris',
-        'image_path',
+        'image_path',   
         'codTypeFormation',
     ];
 
@@ -23,19 +23,19 @@ class formation extends Model
     protected $primary = 'id';
 
     public function typeFormation(){
-            return $this->belongsTo(typeFormation::class, 'codTypeFormation' , 'id');
+            return $this->belongsTo(typeFormation::class, 'typeFormation_id' , 'id');
     }
 
     public function programs(){
-        return $this->hasMany(program::class, 'cod_formation' , 'id');
+        return $this->hasMany(program::class, 'formation_id' , 'id');
     }
 
     public function debouches(){
-        return $this->hasMany(debouche::class, 'cod_formation' , 'id');
+        return $this->hasMany(debouche::class, 'formation_id' , 'id');
     }
 
     public function comments(){
-        return $this->hasMany(comment::class, 'cod_formation' , 'id');
+        return $this->hasMany(comment::class, 'formation_id' , 'id');
     }
 
     public function users(){
