@@ -63,6 +63,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/admin/commentaire" class="nav-link {{navBarClass('comment','active')}}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            commentaires
+                            <span class="right badge badge-warning">New</span>
+                        </p>
+                    </a>
+                </li>
 
             </ul>
         </nav>

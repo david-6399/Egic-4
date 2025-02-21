@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin\Comment;
 use App\Livewire\Admin\Debouche;
 use App\Livewire\Admin\Formation as AdminFormation;
 use App\Livewire\Admin\Formations\Formation as FormationsFormation;
@@ -43,7 +44,8 @@ route::get('/evenement', Event::class);
 route::group(['prefix'=>'admin'], function (){
     route::get('/formation', AdminFormation::class)->name('formation');
     route::get('/program', AdminProgram::class)->name('program');
-    route::get('debouche', Debouche::class)->name('debouche');
+    route::get('/debouche', Debouche::class)->name('debouche');
+    route::get('/commentaire', Comment::class)->name('comment');
 });
 
 

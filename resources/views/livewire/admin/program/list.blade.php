@@ -12,14 +12,14 @@
                     <div class="input-group input-group-sm mx-3" style="width: 150px;">
                         <select class="custom-select" wire:model.live="perPage">
                             {{-- <option>-----</option>                                     --}}
-                            <option value="">Chose Per type</option>
+                            <option value="">Not Working yet</option>
 
                             <option value=""> </option>
 
                         </select>
                     </div>
                     <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search"
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Not Working Yet"
                             wire:model.live="search">
 
                         <div class="input-group-append">
@@ -48,7 +48,8 @@
                                 <td>
                                     {{-- <a href="#" class="btn btn-warning">Programs</a> --}}
                                     <button type="button" class="btn btn-warning" data-toggle="modal"
-                                        data-target="#modal_programAndModule" wire:click='modal_programAndModule()'>
+                                        data-target="#modal_programAndModule"
+                                        wire:click='modal_programAndModule({{ $formation->id }})'>
                                         Programs
                                     </button>
                                     <a href="#" class="btn btn-info">Edit</a>
@@ -66,7 +67,8 @@
 </div>
 
 
-<div class="modal fade show" id="modal_programAndModule" style="display: none;" aria-modal="true" role="dialog" wire:ignore.self>
+<div class="modal fade show" id="modal_programAndModule" style="display: none;" aria-modal="true" role="dialog"
+    wire:ignore.self>
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -76,7 +78,42 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>One fine body…</p>
+                {{-- {{dump($programs)}} --}}
+
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Program</th>
+                                    <th>Module</th>
+                                    <th style="width: 40px">Label</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($programs as $program)
+                                    <tr>
+                                        <td>{{ $program->id }}.</td>
+                                        <td>{{ $program->titre }}</td>
+                                        @if (isset($program->module->name))
+                                            <td>{{ $program->module->name }}</td>
+                                            <td><span class="badge bg-success">DONE</span></td>
+                                        @else
+                                            <td>No Module Yet</td>
+                                            <td><button class="btn btn-none m-0 p-0" wire:click='addNewModule({{$program->id}})'
+                                                    data-toggle="modal" data-target="#modal_addNewModule">
+                                                    <span class="badge bg-warning">SET</span></button></td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -88,11 +125,76 @@
     <!-- /.modal-dialog -->
 </div>
 
+
+
+<div class="modal fade show" id="modal_addNewModule" style="display: none;" aria-modal="true" role="dialog"
+    wire:ignore.self>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Ajouter Module</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-none">
+                    
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form wire:submit='submitNewModule'>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="moduleTitle">Module Title</label>
+                                <input type="email" class="form-control" id="moduleTitle"
+                                    placeholder="Title" wire:model='module.name'>
+                            </div>
+                            <div class="form-group">
+                                <label for="coefficient">Coefficient</label>
+                                <input type="number" class="form-control" id="coefficient"
+                                    placeholder="coefficient" wire:model='module.coefficient'>
+                            </div>
+                            <div class="form-group">
+                                <label for="moduleImage">File input</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="moduleImage" wire:model='moduleImage'>
+                                        <label class="custom-file-label" for="moduleImage">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+
 <script>
-    window.addEventListener("openModal", event => {
-        $("#modal_programAndModule").modal({
-            "show": true,
-            "backdrop": "static"
-        })
-    })
+    // window.addEventListener("openModal", event => {
+    //     $("#modal_programAndModule").modal({
+    //         "show": true,
+    //         "backdrop": "static"
+    //     })
+    // })
+
+    // window.addEventListener("openModal", event => {
+    //     $("#modal_addNewModule").modal({
+    //         "show": true,
+    //         "backdrop": "static"
+    //     })
+    // })
 </script>

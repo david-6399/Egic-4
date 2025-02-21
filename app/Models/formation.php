@@ -15,7 +15,7 @@ class formation extends Model
         'tarif',
         'favoris',
         'image_path',   
-        'codTypeFormation',
+        'typeFormation_id',
     ];
 
     protected $table = 'formations';

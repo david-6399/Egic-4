@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('formation_id')->nullable();
             $table->foreignId('event_id')->nullable();
+            $table->enum('status', ['approved', 'notApproved'])->default('notApproved');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

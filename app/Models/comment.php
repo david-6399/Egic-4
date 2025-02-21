@@ -14,6 +14,7 @@ class comment extends Model
         'user_id',
         'formation_id',
         'event_id',
+        'status'
     ];
 
     protected $table = 'comments';

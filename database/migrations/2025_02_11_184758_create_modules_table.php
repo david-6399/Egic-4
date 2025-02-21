@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('coefficient')->nullable();
             $table->foreignId('program_id')->unique();
+            $table->string('document');
             $table->timestamps();
 
             $table->foreign('program_id')->references('id')->on('programs');

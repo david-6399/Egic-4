@@ -13,9 +13,9 @@
                         <select class="custom-select" wire:model.live="perFormation" >
                             {{-- <option>-----</option>                                     --}}
                             <option value="">-----------------</option>
-                            @foreach($formations as $formation)
-                                <option value="{{$formation->id}}" class="text-bold">{{$formation->nome}}</option>
-                            @endforeach
+                           
+                                <option value="" class="text-bold"></option>
+                            
                         </select>
                     </div>
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -36,35 +36,32 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nome Débouché</th>
-                            <th>Description</th>
-                            <th>Formation</th>
+                            <th>Contenu</th>
+                            <th>Statu</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($debouches as $debouche)
                             <tr>
-                                <td>{{ $debouche->id }}.</td>
-                                <td>{{ $debouche->titre }}</td>
-                                <td>{{ $debouche->description }}</td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <span class="badge bg-primary">
-                                        {{ $debouche->formation->nome }}
+                                        Approved
                                     </span>
                                 </td>
                                 <td>
-                                    <button class="btn btn-info" wire:click='editDebou({{$debouche->id}})' data-toggle="modal"
+                                    <button class="btn btn-info" data-toggle="modal"
                                         data-target="#modal_editDebouche">Edit</button>
                                     <a href="#" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
-                        @endforeach
+                        
 
                     </tbody>
                 </table>
                 <div class="mx-3 pt-3 border-top">
-                    {{$debouches->links()}}
+                    
                 </div>
             </div>
 

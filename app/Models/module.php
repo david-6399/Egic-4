@@ -10,8 +10,10 @@ class module extends Model
     use HasFactory;
 
     protected $fillable =[
-        'titre',
+        'name',
+        'coefficient',
         'program_id',
+        'document'
     ];
 
     public function program(){

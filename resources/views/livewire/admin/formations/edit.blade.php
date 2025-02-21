@@ -116,7 +116,7 @@
                                 <input type="text" class="form-control" placeholder="Category Name ..." hidden>
                                 <select
                                     class="custom-select form-control-border border-width-2 @error('formation.typeFormation') is-invalid @enderror"
-                                    wire:model='editFormation.codTypeFormation'>
+                                    wire:model='editFormation.typrFormation_id'>
                                     <option>--------------------------</option>
                                     @foreach ($typeFormations as $type)
                                         <option value="{{ $type->id }}">{{ $type->name }}</option>

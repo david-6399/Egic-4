@@ -97,7 +97,7 @@ class Formation extends Component
                 'formation.nome' => 'required',
                 'formation.duree' => 'required|numeric',
                 'formation.tarif' => 'required|numeric',
-                'formation.codTypeFormation' => 'required|exists:type_formations,id',
+                'formation.typeFormation_id' => 'required|exists:type_formations,id',
                 'addImage' => 'image|max:1024|mimes:jpeg,png,jpg'
             ]);
             
@@ -109,14 +109,14 @@ class Formation extends Component
             foreach($this->listOfPrograms as $program){
                 program::create([
                     'titre' => $program,
-                    'cod_formation' => $newFormation->id
+                    'formation_id' => $newFormation->id
                 ]);
             }
 
             foreach($this->listOfDebouches as $debouche){
                 debouche::create([
                     'titre' => $debouche,
-                    'cod_formation' => $newFormation->id
+                    'formation_id' => $newFormation->id
                 ]);
             }
 
@@ -149,7 +149,7 @@ class Formation extends Component
                 'editFormation.nome' => 'required',
                 'editFormation.duree' => 'required|numeric',
                 'editFormation.tarif' => 'required|numeric',
-                'editFormation.codTypeFormation' => 'required|exists:type_formations,id',
+                'editFormation.typeFormation_id' => 'required|exists:type_formations,id',
                 'editImage' => 'image|max:1024|mimes:jpeg,png,jpg|nullable'
             ]);
 
@@ -158,21 +158,21 @@ class Formation extends Component
                 'image_path' => $this->editImage != null ? $path : $this->editFormation['image_path']
             ]);
             
-            program::where('cod_formation', $this->editFormation['id'])->delete();
+            program::where('formation_id', $this->editFormation['id'])->delete();
 
             foreach($this->listOfPrograms as $program){
                 program::create([
                     'titre' => $program,
-                    'cod_formation' => $this->editFormation['id']
+                    'formation_id' => $this->editFormation['id']
                 ]);
             }
 
-            debouche::where('cod_formation', $this->editFormation['id'])->delete();
+            debouche::where('formation_id', $this->editFormation['id'])->delete();
 
             foreach($this->listOfDebouches as $debouche){
                 debouche::create([
                     'titre' => $debouche,
-                    'cod_formation'=> $this->editFormation['id']
+                    'formation_id'=> $this->editFormation['id']
                 ]);
             }
 
@@ -196,12 +196,12 @@ class Formation extends Component
     
     public function switchToEdit($id){
         $this->editFormation = ModelsFormation::find($id)->toArray();
-        $this->editProgram = program::select('titre')->where('cod_formation', $id)->get()->toArray();
+        $this->editProgram = program::select('titre')->where('formation_id', $id)->get()->toArray();
         foreach($this->editProgram as $program){
             array_push($this->listOfPrograms, $program['titre']);
         }
 
-        $this->editDebouche = debouche::select('titre')->where('cod_formation', $id)->get()->toArray();
+        $this->editDebouche = debouche::select('titre')->where('formation_id', $id)->get()->toArray();
         foreach($this->editDebouche as $debouche){
             array_push($this->listOfDebouches, $debouche['titre']);
         }
@@ -220,7 +220,7 @@ class Formation extends Component
         $typeFormations = \App\Models\typeFormation::all();
         $formations = ModelsFormation::with('typeFormation')
                         ->where('nome', 'like', '%'.$this->search.'%')
-                        ->where('codTypeFormation','like','%'.$this->perPage.'%')
+                        ->where('typeFormation_id','like','%'.$this->perPage.'%')
                         ->get();
 
         return view('livewire.admin.formations.index', [
