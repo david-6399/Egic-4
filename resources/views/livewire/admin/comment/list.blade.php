@@ -10,11 +10,12 @@
                 <h3 class="card-title">Fixed Header Table</h3>
                 <div class="card-tools d-flex">
                     <div class="input-group input-group-sm mx-3" style="width: 150px;">
-                        <select class="custom-select" wire:model.live="perFormation" >
+                        <select class="custom-select" wire:model.live="perStatus" >
                             {{-- <option>-----</option>                                     --}}
                             <option value="">-----------------</option>
                            
-                                <option value="" class="text-bold"></option>
+                                <option value="approved" class="text-bold">Approved</option>
+                                <option value="notApproved" class="text-bold">Not Approved</option>
                             
                         </select>
                     </div>
@@ -42,20 +43,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
+                        @foreach($comments as $comment)
+                            <tr >
+                                <td>{{$comment->id}}-</td>
+                                <td class="text-truncate" style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{$comment->contenu}}</td>
                                 <td>
-                                    <span class="badge bg-primary">
-                                        Approved
-                                    </span>
+                                    @if($comment->status == 'approved')
+                                        <span class="badge bg-success">
+                                            {{$comment->status}}
+                                        </span>
+                                    @elseif($comment->status == 'notApproved')
+                                        <span class="badge bg-warning">
+                                            {{$comment->status}}
+                                        </span>
+
+                                    @endif
                                 </td>
                                 <td>
-                                    <button class="btn btn-info" data-toggle="modal"
-                                        data-target="#modal_editDebouche">Edit</button>
-                                    <a href="#" class="btn btn-danger">Delete</a>
+                                    <button class="btn btn-info" wire:click='switchToApprove({{$comment->id}})'>
+                                        <img src="{{asset('adminImages/delete.png')}}" style="height: 20px; width:20px" alt=""> Approve</button>
+                                    <button class="btn btn-info" wire:click='switchToNotApprove({{$comment->id}})'>
+                                        <img src="{{asset('adminImages/delete.png')}}" style="height: 20px; width:20px" alt=""> Disapprove</button>
                                 </td>
                             </tr>
+                        @endforeach
                         
 
                     </tbody>

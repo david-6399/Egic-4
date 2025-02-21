@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\typeFormation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class formationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nome' => fake()->name(),
+            'duree' => fake()->numberBetween(12,24),
+            'tarif' => fake()->numberBetween(1000,10000),
+            'favoris' => fake()->numberBetween(0,10),
+            'typeFormation_id' => 1
         ];
     }
 }
