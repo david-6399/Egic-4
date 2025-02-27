@@ -8,7 +8,10 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Fixed Header Table</h3>
-                <div class="card-tools d-flex">
+                <div class="card-tools d-flex" >
+                    <div class="btn btn-gray border py-0" wire:click='resetFiltter()'>
+                        RESET
+                    </div>
                     <div class="input-group input-group-sm mx-3" style="width: 150px;">
                         <select class="custom-select" wire:model.live="perStatus" >
                             {{-- <option>-----</option>                                     --}}
@@ -60,10 +63,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <button class="btn btn-info" wire:click='switchToApprove({{$comment->id}})'>
-                                        <img src="{{asset('adminImages/delete.png')}}" style="height: 20px; width:20px" alt=""> Approve</button>
-                                    <button class="btn btn-info" wire:click='switchToNotApprove({{$comment->id}})'>
-                                        <img src="{{asset('adminImages/delete.png')}}" style="height: 20px; width:20px" alt=""> Disapprove</button>
+                                    <button class="btn btn-info" wire:click='switchToApprove({{$comment->id}})'> Approve</button>
+                                    <button class="btn btn-info" wire:click='switchToNotApprove({{$comment->id}})'> Disapprove</button>
                                 </td>
                             </tr>
                         @endforeach

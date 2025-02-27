@@ -32,6 +32,7 @@
   <link href="{{asset('Mentor/assets/css/style.css')}}" rel="stylesheet">
   <!-- scripts -->
   <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+  @vite('resources/js/adminLte.js')
   <!-- =======================================================
   * Template Name: Mentor
   * Updated: Jan 29 2024 with Bootstrap v5.3.2

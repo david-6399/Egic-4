@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\eventController;
+use App\Http\Controllers\formationContoller;
 use App\Livewire\Admin\Comment;
 use App\Livewire\Admin\Debouche;
 use App\Livewire\Admin\Formation as AdminFormation;
@@ -37,11 +39,15 @@ route::get('/formation', Formation::class);
 route::get('/evenement', Event::class);
 
 
+Route::get('/formation/{id}', [formationContoller::class, 'show'])->name('formation.show');
+
+route::get('/event/{id}', [eventController::class , 'show'])->name('event.show');
+
 // route::prefix('admin')->groupe(function(){
 //     route::get('/formation', Formation::class);
 // });
 
-route::group(['prefix'=>'admin'], function (){
+route::group(['prefix'=>'admin','middleware'=>['can:admin','auth']], function (){
     route::get('/formation', AdminFormation::class)->name('formation');
     route::get('/program', AdminProgram::class)->name('program');
     route::get('/debouche', Debouche::class)->name('debouche');

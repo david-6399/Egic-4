@@ -216,15 +216,17 @@
                 <div class="section-title">
                     <h2>Formation</h2>
                     <p>Certificats les plus populaires</p>
+                    <h6>On Click direct to formation page with setting type fillter to the type current</h6>
                 </div>
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
-
-                    <div class="col-lg-2 col-md-4">
-                        <div class="row text-center icon-box m-2">
-                            <i class="bi bi-patch-check pb-3" style="color: #1F76B9"></i>
-                            <h3><a href=""></a></h3>
+                    @foreach($types as $type)
+                        <div class="col-lg-2 col-md-4">
+                            <div class="row text-center icon-box m-2">
+                                <i class="bi bi-patch-check pb-3" style="color: #1F76B9"></i>
+                                <h3><a href="">{{$type->name}}</a></h3>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
 
 
                 </div>
@@ -243,41 +245,43 @@
 
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
 
-
-                    <div class="col-lg-3   col-md-6 d-flex align-items-stretch">
-                        <div class="course-item">
-                            {{-- <img src="images/{{$formation->image_path}}" class="img-fluid" alt="..."> --}}
-                            <div class="course-content">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4>Web Development</h4>
-                                    <p class="price display-6">Go</p>
-                                </div>
-
-                                <h3><a href=""></a>
-                                </h3>
-                                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae
-                                    dolores dolorem tempore.</p>
-                                <div class="trainer d-flex justify-content-between align-items-center">
-                                    <div class="trainer-profile d-flex align-items-center">
-                                        {{-- <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid"
-                                                 alt=""> --}}
-                                        <span> DA</span>
+                    @foreach($formations as $formation)
+                        <div class="col-lg-3   col-md-6 d-flex align-items-stretch">
+                            <div class="course-item">
+                                {{-- <img src="images/{{$formation->image_path}}" class="img-fluid" alt="..."> --}}
+                                <div class="course-content">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4>Web Development</h4>
+                                        <p class="price display-6">{{$formation->tarif}}</p>
                                     </div>
-                                    <div class="trainer-rank d-flex align-items-center">
-                                        <i class="bx bx-user"></i>&nbsp;50
-                                        &nbsp;&nbsp;
-                                        <i class="bx bx-heart"></i>&nbsp;65
+
+                                    <h3><a href="">{{$formation->nome}}</a></h3>
+                                    <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae
+                                        dolores dolorem tempore.</p>
+                                    <div class="trainer d-flex justify-content-between align-items-center">
+                                        <div class="trainer-profile d-flex align-items-center">
+                                            {{-- <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid"
+                                                    alt=""> --}}
+                                            <span> DA</span>
+                                        </div>
+                                        <div class="trainer-rank d-flex align-items-center">
+                                            <i class="bx bx-user"></i>&nbsp;50
+                                            &nbsp;&nbsp;
+                                            <i class="bx bx-heart"></i>&nbsp;65
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div> <!-- End Course Item-->
+                        </div> <!-- End Course Item-->
+                    @endforeach
 
 
 
 
                 </div>
-                <a href="" class=" get-started-btn mt-4">َAfficher le reste ...</a>
+                @if(count($formations)>=1)
+                    <a href="" class=" get-started-btn mt-4">َAfficher le reste ...</a>
+                @endif
 
             </div>
         </section><!-- End Popular formation Section -->
@@ -295,19 +299,19 @@
 
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
 
-
+                    @foreach ($events as $event)
+                        
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                         <div class="course-item">
                             {{-- <img src="images/{{$formation->image_path}}" class="img-fluid" alt="..."> --}}
                             <div class="course-content">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4>Web Development</h4>
+                                    <h4>Event</h4>
                                     <p class="price">$169</p>
                                 </div>
 
                                 <h3><a href=""></a></h3>
-                                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae
-                                    dolores dolorem tempore.</p>
+                                <p>{{$event->titre}}</p>
                                 <div class="trainer d-flex justify-content-between align-items-center">
                                     <div class="trainer-profile d-flex align-items-center">
                                         {{-- <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid"
@@ -323,14 +327,13 @@
                             </div>
                         </div>
                     </div> <!-- End Course Item-->
-
-
-
-
+                    @endforeach
 
 
                 </div>
-                <a href="" class=" get-started-btn mt-4">َAfficher le reste ...</a>
+                @if(count($events)>=1)
+                    <a href="" class=" get-started-btn mt-4">َAfficher le reste ...</a>
+                @endif
             </div>
         </section><!-- End Popular event Section -->
 

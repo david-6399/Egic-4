@@ -1,11 +1,11 @@
-@extends('user.index')
+@extends('livewire.user.index')
 @section('content')
     <main id="main">
 
         <!-- ======= Breadcrumbs ======= -->
         <div class="breadcrumbs" data-aos="fade-in">
             <div class="container">
-                <h2>{{ $formation->nome_forma }}</h2>
+                <h2>{{ $formations->nome }}</h2>
                 <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit
                     quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
             </div>
@@ -13,17 +13,17 @@
         @if (session('message'))
             <div class="alert alert-info" role="alert">{{ session('message') }}</div>
         @endif
-       
+
 
         <!-- ======= Cource Details Section ======= -->
         <section id="course-details" class="course-details">
             <div class="container" data-aos="fade-up">
 
-                <div class="row" >
-                    <div class="col-lg-8" >
+                <div class="row">
+                    <div class="col-lg-8">
                         <img src="/indexuser/assets/img/illus3.png" class="img-fluid" alt="">
                         <h3>Et enim incidunt fuga tempora</h3>
-                        <p >
+                        <p>
                             Qui et explicabo voluptatem et ab qui vero et voluptas. Sint voluptates temporibus quam autem.
                             Atque nostrum voluptatum laudantium a doloremque enim et ut dicta. Nostrum ducimus est iure
                             minima totam doloribus nisi ullam deserunt. Corporis aut officiis sit nihil est. Labore aut
@@ -34,11 +34,11 @@
                             eum iste est dolorum. Rem voluptas ut sit ut.
                         </p>
                     </div>
-                    
-                    <div class="col-lg-4" >
-                        @if(session('error'))
+
+                    <div class="col-lg-4">
+                        @if (session('error'))
                             <div class="alert alert-danger">
-                                {{session('error')}}
+                                {{ session('error') }}
                             </div>
                         @endif
                         @if (session('seccess'))
@@ -53,46 +53,42 @@
 
                         <div class="course-info d-flex justify-content-between align-items-center">
                             <h5>Durée</h5>
-                            <p>{{ $formation->duree_forma }} <b>Mois</b></p>
+                            <p>{{ $formations->duree }} <b>Mois</b></p>
                         </div>
 
                         <div class="course-info d-flex justify-content-between align-items-center">
                             <h5>Tarif</h5>
-                            <p>{{ $formation->tarif_forma }} <b>DA</b></p>
+                            <p>{{ $formations->tarif }} <b>DA</b></p>
                         </div>
 
                         <div class="course-info d-flex justify-content-between align-items-center">
                             <h5>Tyep De Depliom</h5>
-                            <p>{{ $formation->type_formation->name }}</p>
+                            @if (isset($formations->typeFormation->name))
+                                <p>{{ $formations->typeFormation->name }}</p>
+                            @else
+                                <p>Not Selected Yet</p>
+                            @endif
                         </div>
                         <div class="course-info d-flex justify-content-between align-items-center">
                             <h5>Condition d’accès</h5>
                             <p>
-                                @foreach ($formation->niv_etudiant as $niv_etudiant)
+                                {{-- @foreach ($formation->niv_etudiant as $niv_etudiant)
                                     {{ $niv_etudiant->name }}|
-                                @endforeach
+                                @endforeach --}}
                             </p>
                         </div>
 
 
+                        <livewire:user.components.add-to-favoris :formationId="$formations->id">
 
-                        <div class="course-info d-flex justify-content-between align-items-center">
-                            <h5>Ajouter Aux Favoris</h5>
-                            <form action="{{ url('add_to_cart', $formation->id) }}" method="Post">
-                                @csrf
-                                <button type="submit" class="btn">
-                                    <i class="bx bx-heart"></i>
-                                </button>
-                            </form>
-                        </div>
 
                     </div>
 
-                    <div class="col-lg-8" >
+                    <div class="col-lg-8">
 
                         <h3>Débouché</h3>
-                        @foreach ($formation->débouché as $débouché)
-                            <b>{{ $débouché->name }} :</b> {{$débouché->description}}
+                        @foreach ($formations->debouches as $débouché)
+                            <b>{{ $débouché->titre }} :</b> {{ $débouché->description }}
                         @endforeach
                     </div>
 
@@ -106,55 +102,44 @@
         <section id="cource-details-tabs" class="cource-details-tabs ">
             <div class="container" data-aos="fade-up">
                 <h1>
-                    <center>Les Modules De {{ $formation->program->titre }}</center>
+                    <center>Les Program De <u>{{ $formations->nome }}</u></center>
                 </h1>
                 <div class="dropdown-divider"></div>
 
                 <div class="row">
                     <div class="col-lg-3">
                         <ul class="nav nav-tabs flex-column">
-                            @forelse ($module as $module)
+                            @foreach ($formations->programs as $program)
                                 <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tab"
-                                        href="#tab-{{ $module->id }}">{{ $module->name }}</a>
+                                        href="#tab-{{ $program->id }}">{{ $program->titre }}</a>
                                 </li>
-                            @empty
-                                {{-- <h4>Aucune Module n'a encore été ajoutée</h4> --}}
-                            @endforelse ($program_module as $program_module)
-
-
-
-
+                            @endforeach
                         </ul>
                     </div>
                     <div class="col-lg-9 mt-4 mt-lg-0">
                         <div class="tab-content">
-
-                            @forelse ($module2 as $module2)
-                                <div class="tab-pane" id="tab-{{ $module2->id }}">
+                            {{-- {{dump($formations->programs->module)}} --}}
+                            @foreach ($formations->programs as $program)
+                                <div class="tab-pane" id="tab-{{ $program->id }}">
                                     <div class="row">
                                         <div class="col-lg-8 details order-2 order-lg-1">
-                                            <h3>{{ $module2->name }}</h3>
-
-                                            @foreach ($module2->support_cours as $support_cours)
-                                                @can('student')
-                                                    <a href="/contenus/{{ $support_cours->contenu }}"
-                                                    class="btn get-started-btn">{{ $support_cours->name }}</a>
-                                                @else
-                                                <a href="#" class="btn get-started-btn">{{ $support_cours->name }}</a>
-                                                @endcan
-                                            @endforeach
-
+                                            @if (isset($program->module->id))
+                                                <h3>{{ $program->module->name }}</h3>
+                                                <a href=""
+                                                    class="btn get-started-btn">{{ $program->module->name }}</a>
+                                            @else
+                                                <h3>No Module Yet</h3>
+                                            @endif
                                         </div>
                                         <div class="col-lg-4 text-center order-1 order-lg-2">
-                                            <img src="{{ asset('indexuser/assets/img/illus4.png') }}" alt=""
+                                            <img src="{{ asset('mentor/assets/img/illus4.png') }}" alt=""
                                                 class="img-fluid">
                                         </div>
                                     </div>
                                 </div>
-                            @empty
-                                <h4>Aucune Module n'a encore été ajoutée</h4>
-                            @endforelse ($module2 as $module2)
+                            @endforeach
+
 
                         </div>
                     </div>
@@ -163,36 +148,20 @@
             </div>
         </section><!-- End Cource Details Tabs Section -->
 
+        <livewire:user.components.add-comment :formationId="$formations->id" :eventId="null">
 
-
-        <section id="contact" class="contact">
-            <div class="container" data-aos="fade-up">
-                <div class="row mt-5">
-
-                    {{-- <div class="col-lg-8 mt-5 mt-lg-0"> --}}
-
-                    <form action="{{ url('add_comment', $formation->id) }}" method="post" role="form"
-                        class="php-email-formm">
-                        @csrf
-                        <label for="">
-                            <h3>Ajouter Votre Commentaire ICI :</h3>
-                        </label>
-                        <div class="form-group mt-3">
-                            <textarea class="form-control" name="comment" rows="5" placeholder="Commentaire" required></textarea>
-                        </div>
-                        <div class="my-3">
-                            <div class="loading">Chargement</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Votre message a été envoyé. Merci!</div>
-                        </div>
-                        <div class="text-center"><button type="submit" class="btn">Enregistrer</button></div>
-                    </form>
-
-                </div>
-
-            </div>
-
-            </div>
-        </section>
+        
     </main>
+
+    <script>
+        window.addEventListener('success', event => {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        })
+    </script>
 @endsection

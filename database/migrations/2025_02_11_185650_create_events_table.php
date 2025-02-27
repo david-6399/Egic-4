@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->datetime('event_start');
             $table->datetime('event_end');
-            $table->string('abonnement')->default(0);
+            $table->integer('abonement')->default(0);
             $table->string('image_path')->nullable();
             $table->timestamps();
         });

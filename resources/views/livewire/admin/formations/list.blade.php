@@ -8,13 +8,13 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Fixed Header Table</h3>
-                <div class="card-tools d-flex" >
+                <div class="card-tools d-flex">
                     <div class="input-group input-group-sm mx-3" style="width: 150px;">
                         <select class="custom-select" wire:model.live="perPage">
                             {{-- <option>-----</option>                                     --}}
-                            <option value="">Chose Per type</option>                                    
-                            @foreach($typeFormations as $type)
-                                <option value="{{$type->id}}"> {{ $type->name }} </option>                                    
+                            <option value="">Chose Per type</option>
+                            @foreach ($typeFormations as $type)
+                                <option value="{{ $type->id }}"> {{ $type->name }} </option>
                             @endforeach
                         </select>
                     </div>
@@ -51,9 +51,16 @@
                                 <td>{{ $formation->duree }}</td>
                                 <td>{{ $formation->tarif }}</td>
                                 <td>
-                                    <span class="badge bg-primary">
-                                        {{ $formation->typeFormation->name }}
-                                    </span>
+                                    @if (isset($formation->typeFormation->name))
+                                        <span class="badge bg-primary">
+                                            {{ $formation->typeFormation->name }}
+                                        </span>
+                                        @else
+                                        <span class="badge bg-warning">
+                                            Non spécifié
+                                        </span>
+
+                                    @endif
                                 </td>
                                 <td>
                                     <a href="#" class="btn btn-info"

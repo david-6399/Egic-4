@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\program>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\typeFormation>
  */
-class programFactory extends Factory
+class typeFormationFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,8 @@ class programFactory extends Factory
     public function definition(): array
     {
         return [
-            'titre' => fake()->sentence(4),
-            'formation_id' => fake()->numberBetween(1,10)
+            'name' => fake()->sentence(3),
+            'description' => fake()->text(100)
         ];
     }
 }

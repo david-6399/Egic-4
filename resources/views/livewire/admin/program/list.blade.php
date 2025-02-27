@@ -19,8 +19,8 @@
                         </select>
                     </div>
                     <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Not Working Yet"
-                            wire:model.live="search">
+                        <input type="text" name="table_search" class="form-control float-right"
+                            placeholder="Not Working Yet" wire:model.live="search">
 
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
@@ -93,6 +93,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if($showInput === true)
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Nome De Program ..." wire:model='programName'>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-success" wire:click='addNewProgram()'>Valider</button>
+                                        <button class="btn btn-danger" wire:click='addProgramAnnuler()'>Annuler</button>
+                                    </td>
+                                </tr>
+                                @endif
                                 @foreach ($programs as $program)
                                     <tr>
                                         <td>{{ $program->id }}.</td>
@@ -102,8 +115,9 @@
                                             <td><span class="badge bg-success">DONE</span></td>
                                         @else
                                             <td>No Module Yet</td>
-                                            <td><button class="btn btn-none m-0 p-0" wire:click='addNewModule({{$program->id}})'
-                                                    data-toggle="modal" data-target="#modal_addNewModule">
+                                            <td><button class="btn btn-none m-0 p-0"
+                                                    wire:click='addNewModule({{ $program->id }})' data-toggle="modal"
+                                                    data-target="#modal_addNewModule">
                                                     <span class="badge bg-warning">SET</span></button></td>
                                         @endif
                                     </tr>
@@ -116,8 +130,8 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" wire:click='showInputForAdd()'>Ajputer une
+                    program</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -139,15 +153,15 @@
             </div>
             <div class="modal-body">
                 <div class="card card-none">
-                    
+
                     <!-- /.card-header -->
                     <!-- form start -->
                     <form wire:submit='submitNewModule'>
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="moduleTitle">Module Title</label>
-                                <input type="email" class="form-control" id="moduleTitle"
-                                    placeholder="Title" wire:model='module.name'>
+                                <input type="text" class="form-control" id="moduleTitle" placeholder="Title"
+                                    wire:model='module.name'>
                             </div>
                             <div class="form-group">
                                 <label for="coefficient">Coefficient</label>
@@ -158,7 +172,8 @@
                                 <label for="moduleImage">File input</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="moduleImage" wire:model='moduleImage'>
+                                        <input type="file" class="custom-file-input" id="moduleImage"
+                                            wire:model='moduleImage'>
                                         <label class="custom-file-label" for="moduleImage">Choose file</label>
                                     </div>
                                     <div class="input-group-append">

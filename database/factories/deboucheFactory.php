@@ -17,7 +17,9 @@ class deboucheFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'titre' => fake()->sentence(3),
+            'description' => fake()->text(100),
+            'formation_id' => fake()->numberBetween(1,10)
         ];
     }
 }

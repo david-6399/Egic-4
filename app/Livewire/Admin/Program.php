@@ -24,6 +24,34 @@ class Program extends Component
 
     public $search = '' ;
 
+    public $showInput = false ;
+
+    public $programName = '' ;
+
+
+    public function showInputForAdd(){
+        $this->showInput = true ;
+    }
+
+    public function addNewProgram(){
+        $this->validate([
+            'programName'=> 'required|text|max:30'
+        ]);
+        
+        ModelsProgram::create([
+            'titre' => $this->programName,
+            'formation_id' => $this->getFormationId->id
+        ]);
+
+        $this->programName = '' ;
+        $this->showInput = false;
+    }
+
+    public function addProgramAnnuler(){
+        $this->programName = '';
+        $this->showInput = false;
+    }
+
 
     public function modal_programAndModule($id){
         $this->dispatch('openModal');

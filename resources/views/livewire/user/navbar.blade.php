@@ -17,19 +17,19 @@
                 @endif
             @else
                 <a href="/mycart" class="{{ request()->is('mycart') ? 'active' : '' }}">Panier</a>
-                <li class=" dropdown">
 
+                <li class=" dropdown">
                     <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         v-pre>
                         {{ Auth::user()->name }} <i class="bi bi-chevron-down"></i></a>
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        @if (auth::user()->usertype == 1)
-                            <a href="/dashboard" class="dropdown-item">Dashboard</a>
-                        @endif
-                        {{-- @if(auth::user()->usertype == 0 || auth::user()->usertype == 2)
-                            @livewire('checkstudient')
-                        @endif --}}
+                        @can('admin')
+                            <a href="/admin/formation" class="dropdown-item">Dashboard</a>
+                        @endcan
+
+                        <a class="dropdown-item">Devenir étudiant</a>
+                        
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">
@@ -39,8 +39,8 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
-                        
-                        
+
+
                     </div>
 
                 </li>

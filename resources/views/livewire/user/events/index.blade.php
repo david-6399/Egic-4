@@ -15,21 +15,24 @@
 
         <div class="row">
           
+          @foreach($events as $event)
           <div class="col-md-4 d-flex align-items-stretch">
             <div class="card">
               <div class="card-img">
                 <img src="{{asset('Mentor/assets/img/events-1.jpg')}}" alt="...">
               </div>
               <div class="card-body">
-                <h5 class="card-title"><a href="">Title</a></h5>
-                <p class="fst-italic text-center">{{\carbon\carbon::parse()->format('D d M Y | H:i')}}</p>
-                <p class="card-text p-lines" >description</p>
+                <h5 class="card-title"><a href="" wire:click.prevent='openEvent({{$event->id}})'>{{$event->titre}}</a></h5>
+                <p class="fst-italic text-center">{{\carbon\carbon::parse($event->event_start)->format('D d M Y | H:i')}}</p>
+                <p class="card-text p-lines" >{{$event->description}}</p>
               </div>
             </div>
           </div>
+          @endforeach
               
-          
-
+          <div class="border pt-3">
+            {{$events->links()}}
+          </div>
           
         </div>
 

@@ -20,6 +20,7 @@ class program extends Model
     public function formation(){
         return $this->belongsTo(formation::class, 'formation_id' , 'id');
     }
+    
     public function module(){
         return $this->hasOne(module::class, 'program_id' , 'id');
     }

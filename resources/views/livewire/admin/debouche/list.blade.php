@@ -47,7 +47,7 @@
                             <tr>
                                 <td>{{ $debouche->id }}.</td>
                                 <td>{{ $debouche->titre }}</td>
-                                <td>{{ $debouche->description }}</td>
+                                <td class="text-truncate" style="max-width: 250px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{ $debouche->description }}</td>
                                 <td>
                                     <span class="badge bg-primary">
                                         {{ $debouche->formation->nome }}
