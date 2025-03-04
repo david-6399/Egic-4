@@ -3,6 +3,10 @@
 namespace App\Livewire\User\Components;
 
 use App\Models\comment;
+use App\Models\User;
+use App\Notifications\sendNotification;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Notification as FacadesNotification;
 use Livewire\Component;
 
 class AddComment extends Component
@@ -15,7 +19,6 @@ class AddComment extends Component
     public function mount($formationId, $eventId){
         $this->formationId = $formationId;
         $this->eventId = $eventId;
-        // dd($this->eventId);
     }
 
 
@@ -28,7 +31,7 @@ class AddComment extends Component
             'contenu' => 'required|max:255|string'
         ]);
 
-        comment::create([
+        $comment = comment::create([
             'contenu' => $this->contenu,
             'user_id' => auth()->user()->id,
             'formation_id' => $this->formationId,
@@ -36,6 +39,10 @@ class AddComment extends Component
         ]);
         $this->contenu = '';
         $this->dispatch('success');
+        $admins = User::where('admin','1')->get();
+
+        
+        FacadesNotification::send($admins, new sendNotification($comment));
         
     }
 

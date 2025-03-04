@@ -16,7 +16,7 @@
                     <a href="{{ route('register') }}" class="get-started-btn">{{ __('Register') }}</a>
                 @endif
             @else
-                <a href="/mycart" class="{{ request()->is('mycart') ? 'active' : '' }}">Panier</a>
+                <a href="/mycart" class="{{ request()->is('mycart') ? 'active' : '' }}">  Panier</a>
 
                 <li class=" dropdown">
                     <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"

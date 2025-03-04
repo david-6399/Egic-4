@@ -8,6 +8,7 @@
   <title>Mentor Bootstrap Template - Index</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Favicons -->
   <link href="{{asset('Mentor/assets/img/favicon.png')}}" rel="icon">
@@ -17,6 +18,7 @@
   <link
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
     rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
   <!-- Vendor CSS Files -->
   <link href="{{asset('Mentor/assets/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
@@ -31,8 +33,8 @@
   <!-- Template Main CSS File -->
   <link href="{{asset('Mentor/assets/css/style.css')}}" rel="stylesheet">
   <!-- scripts -->
-  <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
-  @vite('resources/js/adminLte.js')
+  {{-- <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script> --}}
+  @vite('resources/js/app.js')
   <!-- =======================================================
   * Template Name: Mentor
   * Updated: Jan 29 2024 with Bootstrap v5.3.2
@@ -82,8 +84,13 @@
 
   <!-- Template Main JS File -->
   <script src="{{asset('Mentor/assets/js/main.js')}}"></script>
-  <script src="{{asset('Mentor/assets/js/nejs.js')}}"></script>
+  
 
+  <script>
+      window.User = {
+        id: {{optional(auth()->user())->id}}
+      }
+  </script>
 </body>
 
 </html>

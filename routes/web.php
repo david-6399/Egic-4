@@ -54,6 +54,10 @@ route::group(['prefix'=>'admin','middleware'=>['can:admin','auth']], function ()
     route::get('/commentaire', Comment::class)->name('comment');
 });
 
+route::get('test', function(){
+    return phpinfo();
+});
+
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
