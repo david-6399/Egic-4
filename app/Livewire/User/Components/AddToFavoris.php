@@ -41,7 +41,8 @@ class AddToFavoris extends Component
                 return redirect()->route('login');
             }
         }else{
-            dd('is already in the list');
+            $this->dispatch('success');
+            // dd('is already in the list');
         };
 
         $this->isFavorited = userFormation::where('user_id', Auth::id())

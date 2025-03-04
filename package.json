@@ -14,6 +14,8 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "admin-lte": "^4.0.0-beta3",
+        "sweetalert2": "^11.17.2",
         "swiper": "^11.2.2"
     }
 }
