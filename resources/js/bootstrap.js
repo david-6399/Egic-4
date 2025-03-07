@@ -35,5 +35,9 @@ window.Echo = new Echo({
 window.Echo.private("App.Models.User." + User.id).notification(
     (notification) => {
         console.log(notification.type);
+        // Livewire.dispatch("refreshNotifications");
     }
 );
+
+Pusher.logToConsole = true;
+

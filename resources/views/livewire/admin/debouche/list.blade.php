@@ -92,7 +92,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Debouche Title</label>
-                                <input type="text" class="form-control" placeholder="Debouche Title"
+                                <input type="text" class="form-control" placeholder="Debouche Title" 
                                     wire:model='edited.titre'>
                             </div>
                             <div class="form-group">

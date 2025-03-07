@@ -39,8 +39,8 @@ class AddComment extends Component
         ]);
         $this->contenu = '';
         $this->dispatch('success');
-        $admins = User::where('admin','1')->get();
 
+        $admins = User::where('admin','1')->get();
         
         FacadesNotification::send($admins, new sendNotification($comment));
         

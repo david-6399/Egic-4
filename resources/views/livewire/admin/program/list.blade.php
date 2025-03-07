@@ -10,7 +10,7 @@
                 <h3 class="card-title">Fixed Header Table</h3>
                 <div class="card-tools d-flex">
                     <div class="input-group input-group-sm mx-3" style="width: 150px;">
-                        <select class="custom-select" wire:model.live="perPage">
+                        <select class="custom-select" >
                             {{-- <option>-----</option>                                     --}}
                             <option value="">Not Working yet</option>
 
