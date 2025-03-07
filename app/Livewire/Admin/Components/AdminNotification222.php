@@ -17,7 +17,7 @@ class AdminNotification222 extends Component
 
     public function refrech(){
         $this->counter = auth()->user()->unreadNotifications->count();
-        $this->notifications = Auth::user()->notifications->take(4);
+        $this->notifications = Auth::user()->notifications->take(6);
     }
 
     public function markAsRead($notificationId){

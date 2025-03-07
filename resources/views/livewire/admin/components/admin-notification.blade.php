@@ -21,7 +21,11 @@
                         <a href="#" class="dropdown-item {{$notification->read_at ? '' : 'bg-gray-200'}}" wire:click="markAsRead('{{ $notification->id }}')">
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <i class="fas fa-envelope mr-2"></i> {{ \Illuminate\Support\Str::limit($notification->data['comment'], 20, '...') }}
+                                    @if(array_key_exists('comment', $notification->data))
+                                        <i class="fas fa-envelope mr-2"></i> {{ \Illuminate\Support\Str::limit($notification->data['comment'], 15, '...') }}
+                                    @elseif(array_key_exists('userName', $notification->data))
+                                        <i class="fas fa-envelope mr-2"></i> {{ \Illuminate\Support\Str::limit($notification->data['userName'], 15, '...') }}
+                                    @endif
                                 </div>
                                 <span class="float-right text-muted text-sm">{{$notification->created_at->diffForHumans()}}</span>
                             </div>

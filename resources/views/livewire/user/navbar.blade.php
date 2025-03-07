@@ -28,7 +28,7 @@
                             <a href="/admin/formation" class="dropdown-item">Dashboard</a>
                         @endcan
 
-                        <a class="dropdown-item">Devenir étudiant</a>
+                        <livewire:user.components.become-student>
                         
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();

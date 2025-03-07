@@ -36,6 +36,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+                <li class="nav-header">Gérer les formations</li>
                 <li class="nav-item">
                     <a href="/admin/formation" class="nav-link {{navBarClass('formation','active')}}">
                         <i class="nav-icon fas fa-th"></i>
@@ -72,7 +73,7 @@
                         </p>
                     </a>
                 </li>
-
+                <li class="nav-header">Gérer les étudients</li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
