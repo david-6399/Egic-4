@@ -19,9 +19,9 @@ class becomStudent extends Notification implements ShouldBroadcast
      */
 
     public $user ;
-    public function __construct($id)
+    
+    public function __construct(User $user)
     {
-        $user = User::find($id);
         $this->user = $user ;
     }
 
@@ -54,13 +54,15 @@ class becomStudent extends Notification implements ShouldBroadcast
     public function toArray(object $notifiable): array
     {
         return [
-            'userName' =>$this->user->name
+            'userName' =>$this->user->name,
+            'isStudent' => $this->user->student
         ];
     }
 
     public function toBroadcast($notifiable){
         return new BroadcastMessage([
-            'userName' =>$this->user->name
+            'userName' =>$this->user->name,
+            'isStudent' => $this->user->student
         ]);
     }
 }

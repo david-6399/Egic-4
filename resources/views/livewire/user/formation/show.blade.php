@@ -21,7 +21,7 @@
 
                 <div class="row">
                     <div class="col-lg-8">
-                        <img src="/indexuser/assets/img/illus3.png" class="img-fluid" alt="">
+                        <img src="{{asset('userImages/formation.jpg')}}" class="img-fluid" alt="">
                         <h3>Et enim incidunt fuga tempora</h3>
                         <p>
                             Qui et explicabo voluptatem et ab qui vero et voluptas. Sint voluptates temporibus quam autem.
@@ -126,8 +126,11 @@
                                         <div class="col-lg-8 details order-2 order-lg-1">
                                             @if (isset($program->module->id))
                                                 <h3>{{ $program->module->name }}</h3>
-                                                <a href=""
-                                                    class="btn get-started-btn">{{ $program->module->name }}</a>
+                                                @can('syident')
+                                                    <a href="{{asset($program->module->document)}}" class="btn get-started-btn">{{ $program->module->name }}</a>
+                                                @else
+                                                    <a href="#" class="btn get-started-btn">{{ $program->module->name }}</a>
+                                                @endcan
                                             @else
                                                 <h3>No Module Yet</h3>
                                             @endif

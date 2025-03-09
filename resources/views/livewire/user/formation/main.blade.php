@@ -64,11 +64,12 @@
                     @foreach ($formations as $formation)
                         <div class="col-lg-3 col-md-6 d-flex align-items-stretch pb-4">
                             <div class="course-item">
+                                <img src="{{asset('userImages/formation.jpg')}}" class="img-fluid" alt="...">
                                 <div class="course-content">
 
                                     <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h4>{{ $formation->typeFormation_id }}</h4>
-                                        <p class="price">{{ $formation->tarif }} - DA</p>
+                                        <h4>{{ $formation->typeFormation->name }}</h4>
+                                        {{-- <p class="price">{{ $formation->tarif }} - DA</p> --}}
                                     </div>
 
                                     <h3><a href=""  wire:click.prevent='openFormation({{$formation->id}})'>{{ $formation->nome }}</a></h3>
@@ -76,7 +77,7 @@
                                         dolores dolorem tempore.</p>
                                     <div class="trainer d-flex justify-content-between align-items-center">
                                         <div class="trainer-profile d-flex align-items-center">
-                                            {{-- <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt=""> --}}
+                                            <img src="{{asset('adminImages/student.png')}}" class="img-fluid" alt="">
                                             <span>999 DA</span>
                                         </div>
                                         <div class="trainer-rank d-flex align-items-center">

@@ -149,7 +149,7 @@ class Formation extends Component
                 'editFormation.nome' => 'required',
                 'editFormation.duree' => 'required|numeric',
                 'editFormation.tarif' => 'required|numeric',
-                'editFormation.typeFormation_id' => 'required|exists:type_formations,id',
+                'editFormation.typeFormation_id' => 'required|exists:type_formations,id',  
                 'editImage' => 'image|max:1024|mimes:jpeg,png,jpg|nullable'
             ]);
 

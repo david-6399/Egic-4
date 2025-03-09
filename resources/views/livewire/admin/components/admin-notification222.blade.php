@@ -11,8 +11,7 @@
                 <a class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media align-items-center">
-                        <img src="{{ asset('adminImages/comment.png') }}" alt="User Avatar" style="width: 20px"
-                            class="mr-3">
+                        <img src="{{ asset('adminImages/comment.png') }}" alt="User Avatar" style="width: 20px" class="mr-3">
                         <div class="media-body" wire:click='markAsRead("{{ $notification->id }}")'>
                             {{-- <h3 class="dropdown-item-title">
                                 daniel
@@ -41,7 +40,7 @@
                 <div class="dropdown-divider"></div>
             @endforeach
 
-            <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+            <a href="/admin/notifications" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
     </li>
 </div>

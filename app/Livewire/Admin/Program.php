@@ -35,7 +35,7 @@ class Program extends Component
 
     public function addNewProgram(){
         $this->validate([
-            'programName'=> 'required|text|max:30'
+            'programName'=> 'required|string|max:30'
         ]);
         
         ModelsProgram::create([

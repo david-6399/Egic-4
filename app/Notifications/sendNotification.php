@@ -53,13 +53,21 @@ class sendNotification extends Notification implements ShouldBroadcast , ShouldQ
     public function toArray(object $notifiable): array
     {
         return [
-            'comment' => $this->comment->contenu
+            'comment' => $this->comment->contenu,
+            'formation_title' => optional($this->comment->formation)->nome,
+            'event_title'=> optional($this->comment->event)->titre,
+            'contenu' => $this->comment->contenu,
+            'user' => $this->comment->user->name
         ];
     }
 
     public function toBroadcast($notifiable){
         return new BroadcastMessage([
-            'comment' => $this->comment->id
+            'comment' => $this->comment->id,
+            'formation_title' => optional($this->comment->formation)->nome,
+            'event_title'=> optional($this->comment->event)->titre,
+            'contenu' => $this->comment->contenu,
+            'user' => $this->comment->user->name
         ]);
     }
 }
