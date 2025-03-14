@@ -25,6 +25,7 @@ class Student extends Component
         'wtbs' => 0,
     ] ;
 
+    public $search = '' ;
 
     public function userProfile($id){
 
@@ -83,7 +84,14 @@ class Student extends Component
         
         User::create($this->newUser);
         
-        $this->newUser = [] ;
+        $this->newUser = [
+            'created_by' => 'ecole',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password
+            'admin' => 0,
+            'user' => 1,
+            'student' => 0,
+            'wtbs' => 0,
+        ] ;
 
     }
 
@@ -91,7 +99,7 @@ class Student extends Component
 
     public function render()
     {
-        $data = User::paginate(5);
+        $data = User::where('name','like' ,'%'.$this->search.'%')->paginate(5);
         $formation = formation::get();
         return view('livewire.admin.student.index',[
             'users' => $data,
