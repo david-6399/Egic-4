@@ -21,7 +21,11 @@
 
                 <div class="row">
                     <div class="col-lg-8">
-                        <img src="{{asset('userImages/formation.jpg')}}" class="img-fluid" alt="">
+                        @if($formations->image_path != null)
+                            <img src="{{asset($formations->image_path)}}" class="img-fluid" style="max-width: 80vh" alt="">                        
+                        @else
+                            <img src="{{asset('userImages/formation.jpg')}}" class="img-fluid" alt="">
+                        @endif
                         <h3>Et enim incidunt fuga tempora</h3>
                         <p>
                             Qui et explicabo voluptatem et ab qui vero et voluptas. Sint voluptates temporibus quam autem.

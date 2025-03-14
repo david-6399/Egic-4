@@ -74,6 +74,15 @@
                     </a>
                 </li>
                 <li class="nav-header">Gérer les étudients</li>
+                <li class="nav-item">
+                    <a href="/admin/student" class="nav-link {{navBarClass('student','active')}}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Etudients
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

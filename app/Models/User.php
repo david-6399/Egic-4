@@ -21,6 +21,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'student',
+        'admin',
+        'user',
+        'wtbs',
+        'formation_subs_id',
+        'formation_start',
+        'formation_end',
+        'age',
+        'number',
+        'created_by'
     ];
 
     /**
@@ -56,5 +66,9 @@ class User extends Authenticatable
 
     public function events(){
         return $this->belongsToMany(event::class, 'user_events', 'user_id', 'event_id');
+    }
+
+    public function formation_sub(){
+        return $this->belongsTo(formation::class, 'formation_subs_id', 'id');
     }
 }
