@@ -2,18 +2,27 @@
         Créer un nouveau etudiant
         <i class="nav-icon fas fa-user-alt ml-2"></i>
     </div>
+
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Fixed Header Table</h3>
-
-            <div class="card-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search" wire:model.live='search'>
-
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-default">
-                            <i class="fas fa-search"></i>
-                        </button>
+            <div class="card-tools d-flex">
+                <div class="input-group input-group-sm mx-3" style="width: 150px;">
+                    <select class="custom-select" wire:model.live="perUserStatus">
+                        <option value= "" >Chose Per type</option>
+                        <option value="1"> Etudiant</option>
+                        <option value="0">Pas Un Etudiant</option>
+                    </select>
+                </div>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search"
+                            wire:model.live='search'>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -27,7 +36,7 @@
                         <th>Nome</th>
                         <th>Phone Number</th>
                         <th>Role</th>
-                        <th>Formation</th>
+                        <th>Etat de l'utilisateur</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -46,7 +55,13 @@
                             @elseif($user->wtbs)
                                 <td>Veut etre etudiant</td>
                             @endif
-                            <td>Formation</td>
+                            <td>
+                                @if ($user->formation_subs_id)
+                                    <span class="badge badge-success">Etudiant</span>
+                                @else
+                                    <span class="badge badge-danger">Pas Un Etudiant</span>
+                                @endif
+                            </td>
                             <td>
                                 <button class="btn btn-info">Edit</button>
                                 <button type="button" class="btn btn-success" data-toggle="modal"
@@ -188,13 +203,13 @@
                                         <label>Selectioner une formation</label>
                                         <select class="form-control" wire:model='userInfo.formation_subs_id'>
                                             <option value="">-- Select --</option>
-                                            @foreach($formations as $formation)
-                                                <option value="{{$formation->id}}">{{$formation->nome}}</option>
+                                            @foreach ($formations as $formation)
+                                                <option value="{{ $formation->id }}">{{ $formation->nome }}</option>
                                             @endforeach
 
                                         </select>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="date_start">Formation Commencer</label>
                                         <input type="date" class="form-control" id="date_start"

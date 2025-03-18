@@ -3,6 +3,7 @@
 use App\Http\Controllers\eventController;
 use App\Http\Controllers\formationContoller;
 use App\Livewire\Admin\Comment;
+use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Debouche;
 use App\Livewire\Admin\Formation as AdminFormation;
 use App\Livewire\Admin\Formations\Formation as FormationsFormation;
@@ -50,6 +51,7 @@ route::get('/event/{id}', [eventController::class , 'show'])->name('event.show')
 // });
 
 route::group(['prefix'=>'admin','middleware'=>['can:admin','auth']], function (){
+    route::get('/dashboard', Dashboard::class)->name('dashboard');
     route::get('/formation', AdminFormation::class)->name('formation');
     route::get('/program', AdminProgram::class)->name('program');
     route::get('/debouche', Debouche::class)->name('debouche');

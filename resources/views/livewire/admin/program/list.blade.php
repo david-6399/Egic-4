@@ -1,13 +1,12 @@
-<div class="row m-1 btn btn-primary my-3" wire:click='switchToCreate()'>
-    Créer une nouvelle formation
-    <i class="nav-icon fas fa-user-alt ml-2"></i>
+<div class="row m-1  my-3" wire:click='switchToCreate()'>
+    <h1>Afficher Les Programs Par Formation</h1>
 </div>
 
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Fixed Header Table</h3>
+                <h3 class="card-title">Table Des Formation</h3>
                 <div class="card-tools d-flex">
                     <div class="input-group input-group-sm mx-3" style="width: 150px;">
                         <select class="custom-select" >
@@ -37,6 +36,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Formation Name</th>
+                            <th>Programs</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -46,12 +46,14 @@
                                 <td>{{ $formation->id }}</td>
                                 <td>{{ $formation->nome }}</td>
                                 <td>
-                                    {{-- <a href="#" class="btn btn-warning">Programs</a> --}}
                                     <button type="button" class="btn btn-warning" data-toggle="modal"
                                         data-target="#modal_programAndModule"
                                         wire:click='modal_programAndModule({{ $formation->id }})'>
                                         Programs
                                     </button>
+                                </td>
+                                <td>
+                                    {{-- <a href="#" class="btn btn-warning">Programs</a> --}}
                                     <a href="#" class="btn btn-info">Edit</a>
                                     <a href="#" class="btn btn-danger">Delete</a>
                                 </td>

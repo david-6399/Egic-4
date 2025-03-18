@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('niv_etuds', function (Blueprint $table) {
+        Schema::create('referals', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('referal_code');
+            $table->string('time_used')->default(0);
+            $table->foreignId('from_student')->unique()->constrained('users');
+            $table->foreignId('to_user')->nullable()->constrained('users');
             $table->timestamps();
+
         });
     }
 
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('niv_etuds');
+        Schema::dropIfExists('referals');
     }
 };

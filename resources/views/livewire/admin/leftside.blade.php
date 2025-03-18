@@ -36,6 +36,15 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+                <li class="nav-header">Dashboard</li>
+                <li class="nav-item">
+                    <a href="/admin/dashboard" class="nav-link {{navBarClass('dashboard','active')}}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-header">Gérer les formations</li>
                 <li class="nav-item">
                     <a href="/admin/formation" class="nav-link {{navBarClass('formation','active')}}">
@@ -79,6 +88,16 @@
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Etudients
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header">Gérer les Affiliations</li>
+                <li class="nav-item">
+                    <a href="/admin/affiliat" class="nav-link {{navBarClass('affiliat','active')}}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Affiliat
                             <span class="right badge badge-danger">New</span>
                         </p>
                     </a>

@@ -30,7 +30,8 @@ class User extends Authenticatable
         'formation_end',
         'age',
         'number',
-        'created_by'
+        'created_by',
+        'nivelEtud_id',
     ];
 
     /**
@@ -53,7 +54,7 @@ class User extends Authenticatable
     ];
 
     public function nivEtud(){
-        return $this->hasOne(nivEtud::class, 'user_id' , 'id');
+        return $this->belongsTo(nivEtud::class, 'user_id' , 'id');
     }
 
     public function comments(){
@@ -70,5 +71,13 @@ class User extends Authenticatable
 
     public function formation_sub(){
         return $this->belongsTo(formation::class, 'formation_subs_id', 'id');
+    }
+
+    public function referalToUser(){
+        return $this->hasMany(referal::class, 'to_user', 'id');
+    }
+
+    public function referalFromStudent(){
+        return $this->hasOne(referal::class, 'from_student', 'id');
     }
 }

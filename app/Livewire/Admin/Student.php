@@ -27,6 +27,8 @@ class Student extends Component
 
     public $search = '' ;
 
+    public $perUserStatus = null ;
+
     public function userProfile($id){
 
         $this->userInfo = User::with('formation_sub')->find($id)->toArray();
@@ -98,8 +100,17 @@ class Student extends Component
 
 
     public function render()
-    {
-        $data = User::where('name','like' ,'%'.$this->search.'%')->paginate(5);
+    {   
+        if($this->perUserStatus === '0'){
+            $data = User::where('name','like' ,'%'.$this->search.'%')->where('formation_subs_id', null)->paginate(10);
+        }
+        elseif($this->perUserStatus === '1'){
+            $data = User::where('name','like' ,'%'.$this->search.'%')->whereNotNull('formation_subs_id')->paginate(10);
+        }
+        else{
+            $data = User::where('name','like' ,'%'.$this->search.'%')->paginate(10);
+        }
+
         $formation = formation::get();
         return view('livewire.admin.student.index',[
             'users' => $data,

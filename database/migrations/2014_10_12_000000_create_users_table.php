@@ -20,7 +20,6 @@ return new class extends Migration
             $table->integer('age')->nullable();
             $table->string('number')->nullable();
             $table->enum('created_by',['ecole','user'])->default('user');
-            $table->foreignId('formation_subs_id')->nullable();
             $table->date('formation_start')->nullable();
             $table->date('formation_end')->nullable();
             $table->boolean('admin')->default(0);
@@ -29,7 +28,11 @@ return new class extends Migration
             $table->boolean('wtbs')->default(0);
             $table->rememberToken();
             $table->timestamps();
+            
+            $table->foreignId('formation_subs_id')->nullable();
+            $table->foreignId('nivelEtud_id')->nullable();
 
+            $table->foreign('nivelEtud_id')->references('id')->on('niv_etuds');
             $table->foreign('formation_subs_id')->references('id')->on('formations');
         });
     }

@@ -1,6 +1,5 @@
-<div class="row m-1 btn btn-primary my-3" wire:click='switchToCreate()'>
-    Créer une nouvelle formation
-    <i class="nav-icon fas fa-user-alt ml-2"></i>
+<div class="row m-1 my-3" >
+    <h1>Consulter Les Débouchés</h1>
 </div>
 {{-- <h1>{{dump($debouches)}}</h1> --}}
 <div class="row">

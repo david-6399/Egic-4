@@ -1,3 +1,7 @@
+
+
+
+
 <footer id="footer">
 
     <div class="footer-top">
@@ -33,7 +37,9 @@
               <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              @can('student')                
+                <livewire:User.Components.getReferal>
+              @endcan
             </ul>
           </div>
 

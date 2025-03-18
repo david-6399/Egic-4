@@ -11,12 +11,11 @@ class nivEtud extends Model
 
     protected $fillable = [
         'name',
-        'user_id'
     ];
 
     protected $table = 'niv_etuds' ;
 
     public function user(){
-        return $this->belongsTo(User::class, 'user_id' , 'id');
+        return $this->hasMany(User::class, 'user_id' , 'id');
     }
 }

@@ -1,19 +1,13 @@
 <div>
-    <section id="hero" class="d-flex justify-content-center align-items-center">
-        <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+    <section id="hero" class="d-flex justify-content-center align-items-center ">
+        <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100" >
             <h1>Ecole de Gestion Informatique et de Commerce</h1>
             <h2>L’Ecole de Gestion d’Informatique et de Commerce, EGIC Ibn Sina, est une école de commerce située à
-                Oran,
-                en
-                Algérie.</h2>
+                Oran, en Algérie.
+            </h2>
             @if (auth()->check())
-                {{-- @if (auth()->user()->usertype == 3) --}}
-                    <a href="/course" class="btn btn-get-started">Consultés Les Formations</a>
-                {{-- @elseif(auth()->user()->usertype != 1) --}}
-                    <div class="btn btn-get-started">
-                        {{-- @livewire('checkstudient') --}}
-                    </div>
-                {{-- @endif --}}
+                    <a href="/formation" class="btn btn-get-started mx-2">Consultés Les Formations</a>
+                    <a wire:click='addNiveauEtude()' class="btn btn-get-started mx-2">Mon niveau d'etude</a>
             @else
                 <a href="/login" class="btn btn-get-started">Bienvenu</a>
             @endif
@@ -248,7 +242,7 @@
                     @foreach($formations as $formation)
                         <div class="col-lg-3   col-md-6 d-flex align-items-stretch">
                             <div class="course-item">
-                                {{-- <img src="images/{{$formation->image_path}}" class="img-fluid" alt="..."> --}}
+                                <img src="{{ asset('userImages/formation.jpg') }}" class="img-fluid" alt="...">
                                 <div class="course-content">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h4>Web Development</h4>
@@ -280,7 +274,7 @@
 
                 </div>
                 @if(count($formations)>=1)
-                    <a href="" class=" get-started-btn mt-4">َAfficher le reste ...</a>
+                    <a href="/formation" class=" get-started-btn mt-4">َAfficher le reste ...</a>
                 @endif
 
             </div>
@@ -303,7 +297,7 @@
                         
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                         <div class="course-item">
-                            {{-- <img src="images/{{$formation->image_path}}" class="img-fluid" alt="..."> --}}
+                            <img src="{{asset('userImages/event.jpg') }}" class="img-fluid" alt="...">
                             <div class="course-content">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <h4>Event</h4>
@@ -332,7 +326,7 @@
 
                 </div>
                 @if(count($events)>=1)
-                    <a href="" class=" get-started-btn mt-4">َAfficher le reste ...</a>
+                    <a href="/evenement" class=" get-started-btn mt-4">َAfficher le reste ...</a>
                 @endif
             </div>
         </section><!-- End Popular event Section -->
@@ -340,3 +334,33 @@
 
     </main>
 </div>
+
+<script>
+    window.addEventListener('addNiveauEtude', e=>{
+        Swal.fire({
+            title: 'Niveau d\'etude',
+            input: 'select',
+            inputPlaceholder: 'Selectionner votre niveau d\'etude',
+            showCancelButton: true,
+            inputOptions: {
+                '1': 'Bac',
+                '2': 'Licence',
+                '3': 'Master',
+                '4': 'Doctorat'
+            },
+            inputValidator: (value) => {
+                return new Promise((resolve) => {
+                    if (value !== '') {
+                        resolve()
+                    } else {
+                        resolve('Selectionner votre niveau d\'etude')
+                    }
+                })
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                @this.niveauAdded(result.value)
+            }
+        })        
+    })
+</script>
