@@ -37,9 +37,6 @@
               <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              @can('student')                
-                <livewire:User.Components.getReferal>
-              @endcan
             </ul>
           </div>
 

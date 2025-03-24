@@ -13,7 +13,8 @@ class referal extends Model
         'from_student',
         'to_user',
         'time_used',
-        'referal_code'
+        'referal_code',
+        'activated_at', 
     ];
 
     protected $table = 'referals';

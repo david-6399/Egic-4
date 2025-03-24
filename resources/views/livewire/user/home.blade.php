@@ -1,16 +1,25 @@
-<div>
+<div wire:ignore>
     <section id="hero" class="d-flex justify-content-center align-items-center ">
-        <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100" >
+        <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
             <h1>Ecole de Gestion Informatique et de Commerce</h1>
             <h2>L’Ecole de Gestion d’Informatique et de Commerce, EGIC Ibn Sina, est une école de commerce située à
                 Oran, en Algérie.
             </h2>
-            @if (auth()->check())
+            <div class="d-flex">
+
+                @if (auth()->check())
                     <a href="/formation" class="btn btn-get-started mx-2">Consultés Les Formations</a>
                     <a wire:click='addNiveauEtude()' class="btn btn-get-started mx-2">Mon niveau d'etude</a>
-            @else
-                <a href="/login" class="btn btn-get-started">Bienvenu</a>
-            @endif
+                    @can('user')
+                        <a wire:click='addCodePromo()' class="btn btn-get-started mx-2">Ajouter Code Promo</a>
+                    @endcan
+                    @can('student')
+                        <livewire:User.Components.getReferal>
+                    @endcan
+                @else
+                    <a href="/login" class="btn btn-get-started">Bienvenu</a>
+                @endif
+            </div>
         </div>
     </section>
     <main id="main">
@@ -181,14 +190,14 @@
                                 </div>
                                 <div class="col-md-3 col-6">
                                     <div class="single-client text-center">
-                                        <img src="{{ asset('Mentor/assets/img/Partenariats/EF_Education_First_logo (1).png') }}"
+                                        <img src="{{ asset('Mentor/assets/img/Partenariats/Partenariats3.png') }}"
                                             alt="Logo" width="100%" />
                                     </div>
                                     <!-- single client -->
                                 </div>
                                 <div class="col-md-3 col-6">
                                     <div class="single-client text-center">
-                                        <img src="{{ asset('Mentor/assets/img/Partenariats/EF_Education_First_logo (1).png') }}"
+                                        <img src="{{ asset('Mentor/assets/img/Partenariats/Partenariats.png') }}"
                                             alt="Logo" width="100%" />
                                     </div>
                                     <!-- single client -->
@@ -213,11 +222,11 @@
                     <h6>On Click direct to formation page with setting type fillter to the type current</h6>
                 </div>
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                    @foreach($types as $type)
+                    @foreach ($types as $type)
                         <div class="col-lg-2 col-md-4">
                             <div class="row text-center icon-box m-2">
                                 <i class="bi bi-patch-check pb-3" style="color: #1F76B9"></i>
-                                <h3><a href="">{{$type->name}}</a></h3>
+                                <h3><a href="">{{ $type->name }}</a></h3>
                             </div>
                         </div>
                     @endforeach
@@ -230,7 +239,7 @@
 
         <!-- ======= Popular formation Section ======= -->
         <section id="popular-courses" class="courses">
-            <div class="container" data-aos="fade-up">
+            <div class="container" data-aos="fade-left">
 
                 <div class="section-title">
                     <h2>Formation</h2>
@@ -239,17 +248,17 @@
 
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
 
-                    @foreach($formations as $formation)
+                    @foreach ($formations as $formation)
                         <div class="col-lg-3   col-md-6 d-flex align-items-stretch">
                             <div class="course-item">
-                                <img src="{{ asset('userImages/formation.jpg') }}" class="img-fluid" alt="...">
+                                <img src="{{ asset('userImages/formation.jpg') }}" class="img-fluid" style="border-radius: 8px;" alt="...">
                                 <div class="course-content">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h4>Web Development</h4>
-                                        <p class="price display-6">{{$formation->tarif}}</p>
+                                        <p class="price display-6">{{ $formation->tarif }}</p>
                                     </div>
 
-                                    <h3><a href="">{{$formation->nome}}</a></h3>
+                                    <h3><a href="">{{ $formation->nome }}</a></h3>
                                     <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae
                                         dolores dolorem tempore.</p>
                                     <div class="trainer d-flex justify-content-between align-items-center">
@@ -273,7 +282,7 @@
 
 
                 </div>
-                @if(count($formations)>=1)
+                @if (count($formations) >= 1)
                     <a href="/formation" class=" get-started-btn mt-4">َAfficher le reste ...</a>
                 @endif
 
@@ -294,38 +303,37 @@
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
 
                     @foreach ($events as $event)
-                        
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                        <div class="course-item">
-                            <img src="{{asset('userImages/event.jpg') }}" class="img-fluid" alt="...">
-                            <div class="course-content">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4>Event</h4>
-                                    <p class="price">$169</p>
-                                </div>
+                        <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                            <div class="course-item">
+                                <img src="{{ asset('userImages/event.jpg') }}" class="img-fluid" style="border-radius: 8px;" alt="...">
+                                <div class="course-content">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4>Event</h4>
+                                        <p class="price">$169</p>
+                                    </div>
 
-                                <h3><a href=""></a></h3>
-                                <p>{{$event->titre}}</p>
-                                <div class="trainer d-flex justify-content-between align-items-center">
-                                    <div class="trainer-profile d-flex align-items-center">
-                                        {{-- <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid"
+                                    <h3><a href="/event/{{ $event->id }}">{{ $event->titre }}</a></h3>
+                                    <p>{{ $event->description }}</p>
+                                    <div class="trainer d-flex justify-content-between align-items-center">
+                                        <div class="trainer-profile d-flex align-items-center">
+                                            {{-- <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid"
                                                  alt="">
                                              <span>Antonio</span> --}}
-                                    </div>
-                                    <div class="trainer-rank d-flex align-items-center">
-                                        <i class="bx bx-user"></i>&nbsp;50
-                                        &nbsp;&nbsp;
-                                        <i class="bx bx-heart"></i>&nbsp;65
+                                        </div>
+                                        <div class="trainer-rank d-flex align-items-center">
+                                            <i class="bx bx-user"></i>&nbsp;50
+                                            &nbsp;&nbsp;
+                                            <i class="bx bx-heart"></i>&nbsp;65
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div> <!-- End Course Item-->
+                        </div> <!-- End Course Item-->
                     @endforeach
 
 
                 </div>
-                @if(count($events)>=1)
+                @if (count($events) >= 1)
                     <a href="/evenement" class=" get-started-btn mt-4">َAfficher le reste ...</a>
                 @endif
             </div>
@@ -336,7 +344,7 @@
 </div>
 
 <script>
-    window.addEventListener('addNiveauEtude', e=>{
+    window.addEventListener('addNiveauEtude', e => {
         Swal.fire({
             title: 'Niveau d\'etude',
             input: 'select',
@@ -359,8 +367,63 @@
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                @this.niveauAdded(result.value)
+                @this.niveauAdded(result.value);
             }
-        })        
+        })
+    })
+
+    window.addEventListener('addCodePromo', e => {
+         Swal.fire({
+            title: 'Code Promo',
+            input: 'text',
+            inputPlaceholder: 'Entrer votre code promo',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                return new Promise((resolve) => {
+                    if (value !== '') {
+                        resolve()
+                    } else {
+                        resolve('Entrer votre code promo')
+                    }
+                })
+            }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    @this.codePromoAdded(result.value);
+                }
+            }) 
+    })
+
+    window.addEventListener('success', event => {
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "code a ete validé avec succès",
+            showConfirmButton: false,
+            timer: 2000
+        });
+
+    })
+
+    window.addEventListener('error', event => {
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "le code est erroné",
+            showConfirmButton: false,
+            timer: 2000
+        });
+
+    })
+   
+    window.addEventListener('alreadyUsed', event => {
+        Swal.fire({
+            position: "top-end",
+            icon: "info",
+            title: "Le code a déjà été utilisé",
+            showConfirmButton: false,
+            timer: 2000
+        });
+
     })
 </script>

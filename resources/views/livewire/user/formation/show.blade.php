@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         @if($formations->image_path != null)
-                            <img src="{{asset($formations->image_path)}}" class="img-fluid" style="max-width: 80vh" alt="">                        
+                            <img src="{{asset($formations->image_path)}}" class="img-fluid" style="max-width: " alt="">                        
                         @else
                             <img src="{{asset('userImages/formation.jpg')}}" class="img-fluid" alt="">
                         @endif
@@ -140,7 +140,7 @@
                                             @endif
                                         </div>
                                         <div class="col-lg-4 text-center order-1 order-lg-2">
-                                            <img src="{{ asset('mentor/assets/img/illus4.png') }}" alt=""
+                                            <img src="{{ asset('Mentor/assets/img/illus4.png') }}" alt=""
                                                 class="img-fluid">
                                         </div>
                                     </div>
@@ -151,13 +151,57 @@
                         </div>
                     </div>
                 </div>
+                
 
             </div>
         </section><!-- End Cource Details Tabs Section -->
 
         <livewire:user.components.add-comment :formationId="$formations->id" :eventId="null">
 
-        
+        <section id="testimonials" class="testimonials">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Les Commentaire</h2>
+                    <p>Top Commentaire</p>
+                </div>
+
+                <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+                    <div class="swiper-wrapper">
+
+                        @forelse ($comments as $comment )
+
+                            <div class="swiper-slide ">
+                                <div class="testimonial-wrap">
+                                    <div class="testimonial-item">
+                                        <img src="{{ asset('Mentor/assets/img/avatar.png') }}" class="testimonial-img" alt="">
+                                        <h3>{{ $comment->user->name }}</h3>
+                                        <h4>{{ $comment->created_at->format('Y-m-d') }}</h4>
+                                        <p>
+                                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                            <br>
+                                            {{ $comment->contenu }}
+                                            <br>
+                                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div><!-- End testimonial item -->
+                        @empty
+                            <h2>Aucun Commentaire Pour l'instant</h2>
+                        @endforelse
+
+                        <!-- End testimonial item -->
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+
+               
+            </div>
+        </section><!-- End Testimonials Section -->
+
     </main>
 
     <script>

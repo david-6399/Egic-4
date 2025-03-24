@@ -4,6 +4,7 @@ namespace App\Livewire\User;
 
 use App\Models\event;
 use App\Models\formation;
+use App\Models\referal;
 use App\Models\typeFormation;
 use App\Models\User;
 use Livewire\Component;
@@ -21,6 +22,28 @@ class Home extends Component
         $this->dispatch('success');
     }         
 
+    public function addCodePromo(){
+        $this->dispatch('addCodePromo');
+    }
+
+    public function codePromoAdded($test){
+        $code = referal::select('referal_code')->get()->toArray();
+        if(in_array($test, $code[0])){
+            if(referal::where('referal_code', $test)->first()->to_user != null){
+                $this->dispatch('alreadyUsed');
+            }else{
+                referal::where('referal_code', $test)->update([
+                    'to_user' => auth()->user()->id,
+                    'activated_at' => now(),
+                    'time_used' => 1
+                ]);
+                $this->dispatch('success');
+            }
+        }
+        else{
+            $this->dispatch('error');   
+        }
+    }
 
     public function render()
     {

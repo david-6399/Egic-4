@@ -2,6 +2,7 @@
 
 namespace App\Livewire\User;
 
+use App\Models\comment;
 use App\Models\formation as ModelsFormation;
 use App\Models\nivEtud;
 use App\Models\typeFormation;

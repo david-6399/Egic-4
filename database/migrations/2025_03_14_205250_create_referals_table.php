@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('time_used')->default(0);
             $table->foreignId('from_student')->unique()->constrained('users');
             $table->foreignId('to_user')->nullable()->constrained('users');
+            $table->date('activated_at')->nullable();
             $table->timestamps();
 
         });

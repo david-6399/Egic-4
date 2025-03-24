@@ -1,4 +1,9 @@
 <div>
+    <style>
+        .bg-gray-200{
+            background-color: #e9ecefc5;
+        }
+    </style>
     <li class="nav-item dropdown" wire:poll.10s='refrech'>
         <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-comments"></i>
@@ -8,9 +13,9 @@
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             @foreach ($notifications as $notification)
-                <a class="dropdown-item">
+                <a class="dropdown-item {{$notification->read_at ? '' : 'bg-gray-200'}}">
                     <!-- Message Start -->
-                    <div class="media align-items-center">
+                    <div class="media align-items-center " >
                         <img src="{{ asset('adminImages/comment.png') }}" alt="User Avatar" style="width: 20px" class="mr-3">
                         <div class="media-body" wire:click='markAsRead("{{ $notification->id }}")'>
                             {{-- <h3 class="dropdown-item-title">

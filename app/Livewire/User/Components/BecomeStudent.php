@@ -11,12 +11,18 @@ class BecomeStudent extends Component
 {
 
     public function becomeStudent($id){
-        User::where('id',$id)->update([
-            'user'=>0,
-            'admin' => 1,
-            'student' => 0,
-            'wtbs' => 1
-        ]);
+        $user = User::where('id',$id)->first();
+        if($user->email_verified_at != null){
+            User::where('id',$id)->update([
+                'user'=>0,
+                'admin' => 0,
+                'student' => 0,
+                'wtbs' => 1
+            ]);
+        }else{
+            session()->flash('error','Please verify your email first');
+            return redirect()->route('verification.notice');
+        }
 
         $user = User::find($id);
         $admins = User::where('admin',1)->get();

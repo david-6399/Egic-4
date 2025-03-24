@@ -64,7 +64,7 @@
                     @foreach ($formations as $formation)
                         <div class="col-lg-3 col-md-6 d-flex align-items-stretch pb-4">
                             <div class="course-item">
-                                <img src="{{asset('userImages/formation.jpg')}}" class="img-fluid" alt="...">
+                                <img src="{{asset('userImages/formation.jpg')}}" class="img-fluid" style="border-radius: 8px;" alt="...">
                                 <div class="course-content">
 
                                     <div class="d-flex justify-content-between align-items-center mb-3">

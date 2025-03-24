@@ -11,4 +11,9 @@ class userFormation extends Pivot
     use HasFactory;
 
     protected $table = 'user_formations';
+
+    protected $fillable = [
+        'user_id',
+        'formation_id',
+    ];
 }

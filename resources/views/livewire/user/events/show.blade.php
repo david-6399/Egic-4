@@ -17,7 +17,7 @@
 
                 <div class="row">
                     <div class="col-lg-8">
-                        {{-- <img src="{{$event->image_path}}" class="img-fluid" alt=""> --}}
+                        <img src="{{ asset('Mentor/assets/img/events-2.jpg') }}" class="img-fluid" alt="">
                         <h3>Et enim incidunt fuga tempora</h3>
                         <p>
                             Qui et explicabo voluptatem et ab qui vero et voluptas. Sint voluptates temporibus quam autem.
@@ -67,6 +67,50 @@
         <livewire:user.components.add-comment :formationId="null" :eventId="$events->id">
 
         <!-- ======= Cource Details Tabs Section ======= -->
+
+        <section id="testimonials" class="testimonials">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Les Commentaire</h2>
+                    <p>Top Commentaire</p>
+                </div>
+
+                <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+                    <div class="swiper-wrapper">
+
+                        @forelse ($comments as $comment )
+
+                            <div class="swiper-slide ">
+                                <div class="testimonial-wrap">
+                                    <div class="testimonial-item">
+                                        <img src="{{ asset('Mentor/assets/img/avatar.png') }}" class="testimonial-img" alt="">
+                                        <h3>{{ $comment->user->name }}</h3>
+                                        <h4>{{ $comment->created_at->format('Y-m-d') }}</h4>
+                                        <p>
+                                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                            <br>
+                                            {{ $comment->contenu }}
+                                            <br>
+                                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div><!-- End testimonial item -->
+                        @empty
+                            <h2>Aucun Commentaire Pour l'instant</h2>
+                        @endforelse
+
+                        <!-- End testimonial item -->
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+
+               
+            </div>
+        </section><!-- End Testimonials Section -->
 
     </main>
 

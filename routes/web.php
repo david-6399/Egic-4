@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Route;
 route::get('/', Home::class);
 route::get('/about', About::class);
 route::get('/contact', Contact::class);
-route::get('/mycart', MyCart::class);
+route::get('/mycart', MyCart::class)->middleware('auth');
 route::get('/formation', Formation::class);
 route::get('/evenement', Event::class);
 

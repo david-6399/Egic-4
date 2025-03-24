@@ -43,7 +43,7 @@ class Student extends Component
             'userInfo.admin' => 'required|boolean',
             'userInfo.user' => 'required|boolean',
             'userInfo.wtbs' => 'required|boolean',
-            'userInfo.formation_subs_id' => 'required|exists:formations,id',
+            'userInfo.formation_subs_id' => 'nullable|exists:formations,id',
             'userInfo.formation_start' => 'nullable|date',
             'userInfo.formation_end' => 'nullable|date',
             'userInfo.age' => 'nullable|numeric',
@@ -52,6 +52,13 @@ class Student extends Component
         ]);
         User::where('id',$this->userInfo['id'])->update($userData['userInfo']);
 
+        if($this->userInfo['formation_subs_id']){
+            User::where('id',$this->userInfo['id'])->update([
+                'wtbs' => 0 ,
+                'student' => 1
+            ]);
+        }
+        
         $this->dispatch('test');
     }
 

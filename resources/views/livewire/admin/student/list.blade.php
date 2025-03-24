@@ -202,7 +202,7 @@
                                     <div class="form-group">
                                         <label>Selectioner une formation</label>
                                         <select class="form-control" wire:model='userInfo.formation_subs_id'>
-                                            <option value="">-- Select --</option>
+                                            <option value="null">-- Select --</option>
                                             @foreach ($formations as $formation)
                                                 <option value="{{ $formation->id }}">{{ $formation->nome }}</option>
                                             @endforeach

@@ -122,24 +122,27 @@
                 <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
                     <div class="swiper-wrapper">
 
+                        @forelse ($comments as $comment )
 
-                        <div class="swiper-slide">
-                            <div class="testimonial-wrap">
-                                <div class="testimonial-item">
-                                    <img src="{{ asset('Mentor/assets/img/avatar.png') }}" class="testimonial-img"
-                                        alt="">
-                                    <h3>name</h3>
-                                    <h4>date</h4>
-                                    <p>
-                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        <br>
-                                        contenu
-                                        <br>
-                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                    </p>
+                            <div class="swiper-slide ">
+                                <div class="testimonial-wrap">
+                                    <div class="testimonial-item">
+                                        <img src="{{ asset('Mentor/assets/img/avatar.png') }}" class="testimonial-img" alt="">
+                                        <h3>{{ $comment->user->name }}</h3>
+                                        <h4>{{ $comment->created_at->format('Y-m-d') }}</h4>
+                                        <p>
+                                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                            <br>
+                                            {{ $comment->contenu }}
+                                            <br>
+                                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div><!-- End testimonial item -->
+                            </div><!-- End testimonial item -->
+                        @empty
+                            <h2>Aucun Commentaire Pour l'instant</h2>
+                        @endforelse
 
                         <!-- End testimonial item -->
 
@@ -147,6 +150,8 @@
                     <div class="swiper-pagination"></div>
                 </div>
 
+
+               
             </div>
         </section><!-- End Testimonials Section -->
 
