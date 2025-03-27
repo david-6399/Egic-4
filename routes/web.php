@@ -56,7 +56,7 @@ route::group(['prefix'=>'admin','middleware'=>['can:admin','auth']], function ()
     route::get('/program', AdminProgram::class)->name('program');
     route::get('/debouche', Debouche::class)->name('debouche');
     route::get('/commentaire', Comment::class)->name('comment');
-    route::get('/notifications', Notification::class)->name('notification');
+    route::get('/notifications', notification::class)->name('notification');
     route::get('/student', Student::class)->name('student');
 });
 
