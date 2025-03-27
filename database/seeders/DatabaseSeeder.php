@@ -29,11 +29,11 @@ class DatabaseSeeder extends Seeder
         // comment::factory(10)->create();
         \App\Models\User::create([
             'name' => 'admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'chdaoud1700@gmail.com',
             'password' => bcrypt('admin'),
             'admin' => 1,   
             'user' => 0,
-            'student' => 0,
+            'student' => 1,
             'wtbs' => 0,
         ]);
     }

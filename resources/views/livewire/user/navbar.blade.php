@@ -8,7 +8,6 @@
 
             <div class="border-left"></div>
             @guest
-
                 @if (Route::has('login'))
                     <a href="{{ route('login') }}" class="">{{ __('Login') }}</a>
                 @endif
