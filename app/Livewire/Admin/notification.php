@@ -5,7 +5,7 @@ namespace App\Livewire\Admin;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Notification extends Component
+class notification extends Component
 {
     public function render()
     {
