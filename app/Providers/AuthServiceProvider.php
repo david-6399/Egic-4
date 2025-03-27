@@ -25,23 +25,21 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('admin', function(User $user){
-            
-            // \Log::debug('Checking admin gate for user: '.$user->id);
-            Log::debug('Checking admin gate for user: '.$user->id);
-            return $user->admin === 1 ;
+        Gate::define('admin', function(User $user) {
+            Log::debug("Admin gate check for user {$user->id}", ['admin' => $user->admin]);
+            return $user->admin == 1; // Using == for loose comparison
         });
 
-        Gate::define('user', function(user $user){
-            return $user->user === 1 ;
+        Gate::define('user', function(User $user) {
+            return $user->user == 1;
         });
 
-        Gate::define('student', function(user $user){
-            return $user->student === 1; 
+        Gate::define('student', function(User $user) {
+            return $user->student == 1;
         });
 
-        Gate::define('wtbs', function(user $user){
-            $user->wtbs === 1 ;
+        Gate::define('wtbs', function(User $user) {
+            return $user->wtbs == 1; // Added missing return statement
         });
     }
 }
