@@ -65,6 +65,22 @@ route::get('test', function(){
 });
 
 
+Route::get('/test-gate', function() {
+    $user = App\Models\User::first();
+    auth()->login($user);
+    
+    \Log::debug('Gate check results', [
+        'admin' => Gate::allows('admin'),
+        'abilities' => Gate::abilities()
+    ]);
+    
+    return response()->json([
+        'gates_working' => Gate::allows('admin'),
+        'user_role' => $user->role
+    ]);
+});
+
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
