@@ -17,6 +17,7 @@ use App\Livewire\User\Formation;
 use App\Livewire\User\Home;
 use App\Livewire\User\MyCart;
 use App\Models\program;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,7 +77,7 @@ Route::get('/test-gate', function() {
     
     return response()->json([
         'gates_working' => Gate::allows('admin'),
-        'user_role' => $user->role
+        'user_role' => $user->admin
     ]);
 });
 
