@@ -26,8 +26,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('admin', function(User $user) {
-            Log::debug("Admin gate check for user {$user->id}", ['admin' => $user->admin]);
-            return $user->admin == 1; // Using == for loose comparison
+            return $user->admin == 1; 
         });
 
         Gate::define('user', function(User $user) {

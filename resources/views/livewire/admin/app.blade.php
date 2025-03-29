@@ -16,6 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Font Awesome Icons -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     @vite(['resources/css/adminLte.css','resources/js/adminLte.js'])
+    
     {{-- <script data-cfasync="false" nonce="7863d7ee-cdc0-4622-bf8b-2605080f004b">
         try {
             (function(w, d) {
