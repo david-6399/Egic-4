@@ -20,13 +20,16 @@ class BecomeStudent extends Component
                 'wtbs' => 1
             ]);
         }else{
-            session()->flash('error','Please verify your email first');
-            return redirect()->route('verification.notice');
+            $this->dispatch('verifyEmail');
         }
 
         $user = User::find($id);
         $admins = User::where('admin',1)->get();
         Notification::send($admins, new becomStudent($user));
+    }
+
+    public function goToVerifyEmail(){
+        return redirect()->route('verification.notice');
     }
 
 

@@ -32,13 +32,11 @@
 
     <link href="{{ asset('Mentor/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css" rel="stylesheet">
-
     <!-- Template Main CSS File -->
     <link href="{{ asset('Mentor/assets/css/style.css') }}" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css" rel="stylesheet">
 
-    <!-- scripts -->
-    {{-- <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script> --}}
     @livewireStyles
     @vite('resources/js/app.js')
 </head>

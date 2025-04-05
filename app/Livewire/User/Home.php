@@ -19,7 +19,7 @@ class Home extends Component
     public function niveauAdded($test){
         $user = auth()->user()->id;
         User::where('id', $user)->update(['nivelEtud_id' => $test]);
-        $this->dispatch('success');
+        $this->dispatch('done');
     }         
 
     public function addCodePromo(){
@@ -37,11 +37,11 @@ class Home extends Component
                     'activated_at' => now(),
                     'time_used' => 1
                 ]);
-                $this->dispatch('success');
+                $this->dispatch('done');
             }
         }
         else{
-            $this->dispatch('error');   
+            $this->dispatch('failed');   
         }
     }
 

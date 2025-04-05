@@ -394,7 +394,7 @@
             }) 
     })
 
-    window.addEventListener('success', event => {
+    window.addEventListener('done', event => {
         Swal.fire({
             position: "top-end",
             icon: "success",
@@ -405,7 +405,7 @@
 
     })
 
-    window.addEventListener('error', event => {
+    window.addEventListener('failed', event => {
         Swal.fire({
             position: "top-end",
             icon: "error",
