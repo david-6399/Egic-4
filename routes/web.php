@@ -7,7 +7,7 @@ use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Debouche;
 use App\Livewire\Admin\Formation as AdminFormation;
 use App\Livewire\Admin\Formations\Formation as FormationsFormation;
-use App\Livewire\Admin\Notification;
+use App\Livewire\Admin\notification;
 use App\Livewire\Admin\Program as AdminProgram;
 use App\Livewire\Admin\Student;
 use App\Livewire\User\About;
@@ -56,7 +56,7 @@ route::group(['prefix'=>'admin','middleware'=>['can:admin','auth']], function ()
     route::get('/program', AdminProgram::class)->name('program');
     route::get('/debouche', Debouche::class)->name('debouche');
     route::get('/commentaire', Comment::class)->name('comment');
-    route::get('/notifications', Notification::class)->name('notification');
+    route::get('/notifications', notification::class)->name('notification');
     route::get('/student', Student::class)->name('student');
 });
 

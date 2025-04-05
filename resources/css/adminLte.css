@@ -1,4 +1,2 @@
-
-@import "../rec/admin-lte/plugins/fontawesome-free/css/all.css";
-@import "../rec/admin-lte/dist/css/adminlte.css"
-
+ @import "../../public/LTE/plugins/fontawesome-free/css/all.min.css";
+ @import "../../public/LTE/dist/css/adminlte.min.css";
