@@ -18,7 +18,7 @@ class MyCart extends Component
     {
         $data = user::where('id', auth()->user()->id)->with('formations')->first();
         
-        return view('livewire.user.myCart',[
+        return view('livewire.user.mycart',[
             'data' => $data
         ])
                 ->extends('livewire.user.index')
