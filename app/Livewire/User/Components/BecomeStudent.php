@@ -9,29 +9,30 @@ use Livewire\Component;
 
 class BecomeStudent extends Component
 {
-
-    public function becomeStudent($id){
-        $user = User::where('id',$id)->first();
-        if($user->email_verified_at != null){
-            User::where('id',$id)->update([
-                'user'=>0,
+    public function becomeStudent($id)
+    {
+        if (User::where('id', $id)->whereNotNull('email_verified_at')->exists()) {
+            User::where('id', $id)->update([
+                'user' => 0,
                 'admin' => 0,
                 'student' => 0,
-                'wtbs' => 1
+                'wtbs' => 1,
             ]);
-        }else{
-            $this->dispatch('verifyEmail');
+            return redirect()->route('home')->with('success', 'You are now a student');
+        } else {
+            $this->skipRender(); 
+            return $this->dispatch('verifyEmail');
         }
 
         $user = User::find($id);
-        $admins = User::where('admin',1)->get();
+        $admins = User::where('admin', 1)->get();
         Notification::send($admins, new becomStudent($user));
     }
 
-    public function goToVerifyEmail(){
+    public function goToVerifyEmail()
+    {
         return redirect()->route('verification.notice');
     }
-
 
     public function render()
     {

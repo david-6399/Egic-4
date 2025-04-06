@@ -35,9 +35,9 @@ class Comment extends Component
     public function render()
     {
         if(!$this->perStatus){
-            $data = ModelsComment::where('contenu','like','%'.$this->search.'%')->get();
+            $data = ModelsComment::where('contenu','like','%'.$this->search.'%')->orderBy('created_at', 'asc')->get();
         }else{
-            $data = ModelsComment::where('contenu','like','%'.$this->search.'%')->where('status','like',$this->perStatus)->get();
+            $data = ModelsComment::where('contenu','like','%'.$this->search.'%')->where('status','like',$this->perStatus)->orderBy('created_at', 'asc')->get();
         }
         return view('livewire.admin.comment.index',[
             'comments' => $data 

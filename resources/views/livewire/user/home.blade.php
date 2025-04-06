@@ -5,19 +5,18 @@
             <h2>L’Ecole de Gestion d’Informatique et de Commerce, EGIC Ibn Sina, est une école de commerce située à
                 Oran, en Algérie.
             </h2>
-            <div class="d-flex">
-
+            <div class="d-flex flex-md-row flex-column">
                 @if (auth()->check())
-                    <a href="/formation" class="btn btn-get-started mx-2">Consultés Les Formations</a>
-                    <a wire:click='addNiveauEtude()' class="btn btn-get-started mx-2">Mon niveau d'etude</a>
+                    <a href="/formation" class="btn btn-get-started mx-2 d-inline-block d-md-initial">Consultés Les Formations</a>
+                    <a wire:click='addNiveauEtude()' class="btn btn-get-started mx-2 d-inline-block d-md-initial">Mon niveau d'etude</a>
                     @can('user')
-                        <a wire:click='addCodePromo()' class="btn btn-get-started mx-2">Ajouter Code Promo</a>
+                        <a wire:click='addCodePromo()' class="btn btn-get-started mx-2 d-inline-block d-md-initial">Ajouter Code Promo</a>
                     @endcan
                     @can('student')
                         <livewire:User.Components.getReferal>
-                    @endcan
-                @else
-                    <a href="/login" class="btn btn-get-started">Bienvenu</a>
+                        @endcan
+                    @else
+                        <a href="/login" class="btn btn-get-started d-inline-block d-md-initial">Bienvenu</a>
                 @endif
             </div>
         </div>
@@ -251,14 +250,15 @@
                     @foreach ($formations as $formation)
                         <div class="col-lg-3   col-md-6 d-flex align-items-stretch">
                             <div class="course-item">
-                                <img src="{{ asset('userImages/formation.jpg') }}" class="img-fluid" style="border-radius: 8px;" alt="...">
+                                <img src="{{ asset('userImages/formation.jpg') }}" class="img-fluid"
+                                    style="border-radius: 8px;" alt="...">
                                 <div class="course-content">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h4>Web Development</h4>
                                         <p class="price display-6">{{ $formation->tarif }}</p>
                                     </div>
 
-                                    <h3><a href="">{{ $formation->nome }}</a></h3>
+                                    <h3><a href="/formation/{{ $formation->id }}">{{ $formation->nome }}</a></h3>
                                     <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae
                                         dolores dolorem tempore.</p>
                                     <div class="trainer d-flex justify-content-between align-items-center">
@@ -305,7 +305,8 @@
                     @foreach ($events as $event)
                         <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                             <div class="course-item">
-                                <img src="{{ asset('userImages/event.jpg') }}" class="img-fluid" style="border-radius: 8px;" alt="...">
+                                <img src="{{ asset('userImages/event.jpg') }}" class="img-fluid"
+                                    style="border-radius: 8px;" alt="...">
                                 <div class="course-content">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h4>Event</h4>
@@ -373,7 +374,7 @@
     })
 
     window.addEventListener('addCodePromo', e => {
-         Swal.fire({
+        Swal.fire({
             title: 'Code Promo',
             input: 'text',
             inputPlaceholder: 'Entrer votre code promo',
@@ -387,11 +388,11 @@
                     }
                 })
             }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    @this.codePromoAdded(result.value);
-                }
-            }) 
+        }).then((result) => {
+            if (result.isConfirmed) {
+                @this.codePromoAdded(result.value);
+            }
+        })
     })
 
     window.addEventListener('done', event => {
@@ -415,7 +416,7 @@
         });
 
     })
-   
+
     window.addEventListener('alreadyUsed', event => {
         Swal.fire({
             position: "top-end",

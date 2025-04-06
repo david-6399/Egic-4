@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 // Route::view('/about', 'User.home');
 
 
-route::get('/', Home::class);
+route::get('/', Home::class)->name('home');
 route::get('/about', About::class);
 route::get('/contact', Contact::class);
 route::get('/mycart', MyCart::class)->middleware('auth');
@@ -65,12 +65,12 @@ route::get('test', function(){
 });
 
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+// Route::view('dashboard', 'dashboard')
+//     ->middleware(['auth', 'verified'])
+//     ->name('dashboard');
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+// Route::view('profile', 'profile')
+//     ->middleware(['auth'])
+//     ->name('profile');
 
 require __DIR__.'/auth.php';

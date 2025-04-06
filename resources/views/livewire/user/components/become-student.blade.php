@@ -6,7 +6,7 @@
 
 <script>
         window.addEventListener('verifyEmail', event => {
-            
+
             Swal.fire({
                 title: "Verifiez votre address email",
                 showCancelButton: true,

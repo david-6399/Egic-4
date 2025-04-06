@@ -34,6 +34,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         $this->redirect('/', navigate: true);
     }
+
 }; ?>
 
 <div>

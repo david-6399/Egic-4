@@ -136,7 +136,7 @@
                                                     <a href="#" class="btn get-started-btn">{{ $program->module->name }}</a>
                                                 @endcan
                                             @else
-                                                <h3>No Module Yet</h3>
+                                                <h3>Pas encore des modules</h3>
                                             @endif
                                         </div>
                                         <div class="col-lg-4 text-center order-1 order-lg-2">

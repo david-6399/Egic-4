@@ -20,23 +20,23 @@
                             <div class="form-group">
                                 <label>Formation Name :</label>
                                 <input type="text"
-                                    class="form-control border-primary @error('') is-invalid @enderror"
+                                    class="form-control @error('formation.nome') is-invalid @enderror"
                                     placeholder="Proudct Name..." wire:model='formation.nome'>
                             </div>
                             <div class="form-group">
                                 <label>La Durée de la formation</label>
-                                <input type="number" class="form-control @error('') is-invalid @enderror"
+                                <input type="number" class="form-control @error('formation.duree') is-invalid @enderror"
                                     placeholder="Unit Price..." wire:model='formation.duree'>
                             </div>
                             <div class="form-group">
                                 <label for="productQuantity">Tarif De la formation</label>
-                                <input type="number" class="form-control @error('') is-invalid @enderror"
+                                <input type="number" class="form-control @error('formation.tarif') is-invalid @enderror"
                                     id="productQuantity" placeholder="Quantity..." wire:model='formation.tarif'>
                             </div>
 
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input form-control @error('') is-invalid @enderror" 
+                                    <input type="file" class="custom-file-input form-control @error('addImage') is-invalid @enderror" 
                                     id="productImage" wire:model='addImage'>
                                     @error('addImage')
                                         <div class="text-danger ">
@@ -78,7 +78,9 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Add Title ..."
+                                <input type="text" class="form-control @error('program.titre')
+                                    is-invalid
+                                @enderror" placeholder="Add Title ..."
                                     wire:model.lazy='program.titre' wire:keydown.enter.prevent='addProgramToList()'>
                             </div>
                             @foreach ($listOfPrograms as $key => $index)
@@ -106,12 +108,14 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Les type</label>
-                                <input type="text" class="form-control" placeholder="Ajouter un nouveau type"
+                                <input type="text" class="form-control @error('program.titre')
+                                    is-invalid
+                                @enderror" placeholder="Ajouter un nouveau type"
                                     wire:model='newTypeFormation' wire:keydown.enter.prevent='addTypeFormation()'>
 
                                 <input type="text" class="form-control" placeholder="Category Name ..." hidden>
                                 <select
-                                    class="custom-select form-control-border border-width-2 @error('formation.typeFormation') is-invalid @enderror"
+                                    class="custom-select form-control-border border-width-2 @error('formation.typeFormation_id') is-invalid @enderror"
                                     wire:model='formation.typeFormation_id'>
                                     <option>--------------------------</option>
                                     @foreach ($typeFormations as $type)

@@ -41,7 +41,7 @@ class Formation extends Component
 
         public function addProgramToList(){
             $this->validate([
-                'program.titre' => 'string|nullable'
+                'program.titre' => 'string|required',
             ]);
 
             array_push($this->listOfPrograms, $this->program['titre']);
@@ -59,7 +59,7 @@ class Formation extends Component
 
         public function addTypeFormation(){
             $this->validate([
-                'newTypeFormation' => 'required|string'
+                'newTypeFormation' => 'string|required'
             ]);
             
             typeFormation::create([
@@ -72,7 +72,7 @@ class Formation extends Component
         public function addDeboucheToList(){
         
             $this->validate([
-                'debouche.titre' => 'required|string',
+                'debouche.titre' => 'string|required',
             ]);
 
             array_push($this->listOfDebouches, $this->debouche['titre']);
@@ -89,21 +89,22 @@ class Formation extends Component
         }
 
         public function newFormation(){
-
-            $image = $this->addImage->store('formations', 'public');
-            $path = 'storage/'.$image ;
+            if($this->addImage){
+                $image = $this->addImage->store('formations', 'public');
+                $path = 'storage/'.$image ;
+            }
             
             $validateFormation = $this->validate([
                 'formation.nome' => 'required',
                 'formation.duree' => 'required|numeric',
                 'formation.tarif' => 'required|numeric',
                 'formation.typeFormation_id' => 'required|exists:type_formations,id',
-                'addImage' => 'image|max:1024|mimes:jpeg,png,jpg'
+                'addImage' => 'image|max:1024|mimes:jpeg,png,jpg|nullable',
             ]);
             
             $newFormation = ModelsFormation::create([
                 ...$validateFormation['formation'],
-                'image_path' => $path
+                'image_path' => $path ?? null
             ]);
             
             foreach($this->listOfPrograms as $program){
@@ -125,7 +126,8 @@ class Formation extends Component
             $this->formation = [];
             $this->addImage = null ;
             
-            $this->dispatch('formationCreated');        
+            $this->dispatch('formationCreated');
+            $this->pageStatus = 'list';     
             
         }
 
