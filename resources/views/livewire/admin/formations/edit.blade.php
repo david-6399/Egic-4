@@ -140,28 +140,70 @@
         </div>
 
     </div>
-    <div class="col-lg-6">
-        <form>
-            <div class="card card-primary ">
-                <div class="card-header">
-                    <h3 class="card-title">Ajputer les débouchés</h3>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Add Title ..."
-                            wire:model='debouche.titre' wire:keydown.enter.prevent='addDeboucheToList()'>
-                    </div>
-                    @foreach ($listOfDebouches as $key => $index)
-                        <div class="callout callout-warning d-flex justify-content-between">
-                            <h5>{{ $index }}</h5>
-                            <div wire:click='deleteDebouche({{ $key }})'>
-                                <img src="{{ asset('adminImages/delete.png') }}" alt="Delete" style=" width:25px;">
-                            </div>
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-6">
+                <form>
+                    <div class="card card-primary ">
+                        <div class="card-header">
+                            <h3 class="card-title">Ajputer les débouchés</h3>
                         </div>
-                    @endforeach
-                </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Add Title ..."
+                                    wire:model='debouche.titre' wire:keydown.enter.prevent='addDeboucheToList()'>
+                            </div>
+                            @foreach ($listOfDebouches as $key => $index)
+                                <div class="callout callout-warning d-flex justify-content-between">
+                                    <h5>{{ $index }}</h5>
+                                    <div wire:click='deleteDebouche({{ $key }})'>
+                                        <img src="{{ asset('adminImages/delete.png') }}" alt="Delete" style=" width:25px;">
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+
+            <div class="col-lg-6">
+                <form>
+                    <div class="card card-primary ">
+                        <div class="card-header">
+                            <h3 class="card-title">Ajputer les condition d'access'</h3>
+                        </div>
+                        <div class="card-body d-block">
+                            <div class="d-flex my-2">
+                                <button class="btn btn-primary"
+                                    wire:click.prevent='showInputFaild()'>Create..</button>
+                                <div class="w-100">
+                                    @if ($showInput == true)
+                                        <input type="text"
+                                            class="form-control mx-2 @error('condition')
+                                            is-invalid
+                                        @enderror"
+                                            placeholder="Add Title ..." wire:model='condition'
+                                            wire:keydown.enter.prevent='addNewCondition'>
+                                        @error('condition')
+                                            <div class="text-danger mx-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    @endif
+                                </div>
+                            </div>
+                            @foreach ($conditions as $condition)
+                                <div class="d-block">
+                                    <input type="checkbox" id="condition-{{ $condition->id }}"
+                                    wire:model="selectedConditions" value="{{ $condition->id }}">
+                                    <label for="condition-{{ $condition->id }}">{{ $condition->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
 </div>

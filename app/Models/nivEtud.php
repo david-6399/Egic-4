@@ -18,4 +18,9 @@ class nivEtud extends Model
     public function user(){
         return $this->hasMany(User::class, 'user_id' , 'id');
     }
+
+    public function formations(){
+        return $this->belongsToMany(formation::class, 'formation_niv_etuds', 'nivEtud_id', 'formation_id');
+    }
+
 }

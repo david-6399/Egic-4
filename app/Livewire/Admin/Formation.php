@@ -4,6 +4,8 @@ namespace App\Livewire\Admin;
 
 use App\Models\debouche;
 use App\Models\formation as ModelsFormation;
+use App\Models\formation_nivEtud;
+use App\Models\nivEtud;
 use App\Models\program;
 use App\Models\typeFormation;
 use Livewire\Component;
@@ -36,6 +38,13 @@ class Formation extends Component
 
     public $perPage = '';
     
+    public $showInput = false;
+
+    public $condition = '';
+    public $selectedConditions = [];
+    public $editedConditions = [];
+
+
     
     // start create section
 
@@ -121,15 +130,37 @@ class Formation extends Component
                 ]);
             }
 
+            foreach($this->selectedConditions as $condition){
+                nivEtud::find($condition)->formations()->attach($newFormation->id);
+            }
+
             $this->listOfPrograms = [];
             $this->listOfDebouches = [];
             $this->formation = [];
             $this->addImage = null ;
+            $this->selectedConditions = [];
             
             $this->dispatch('formationCreated');
             $this->pageStatus = 'list';     
             
         }
+
+        public function showInputFaild(){
+            $this->showInput = !$this->showInput;
+            $this->resetErrorBag();
+        }
+
+        public function addNewCondition(){
+            $condition = $this->validate([
+                'condition' => 'string|required'
+            ]);
+            nivEtud::create([
+                'name' => $condition['condition']
+            ]);
+            $this->condition = '';
+            $this->showInputFaild();
+        }
+
 
     // end create section
     
@@ -178,9 +209,16 @@ class Formation extends Component
                 ]);
             }
 
+            formation_nivEtud::where('formation_id', $this->editFormation['id'])->delete();
+
+            foreach($this->selectedConditions as $condition){
+                nivEtud::find($condition)->formations()->attach($this->editFormation['id']);
+            }
+            
             $this->listOfPrograms = [];
             $this->listOfDebouches = [];
             $this->editFormation = [];
+            $this->selectedConditions = [];
 
             $this->dispatch('formationUpdated');
             $this->pageStatus = 'list';
@@ -208,6 +246,11 @@ class Formation extends Component
             array_push($this->listOfDebouches, $debouche['titre']);
         }
 
+        $this->editedConditions = formation_nivEtud::select('nivEtud_id')->where('formation_id', $id)->get()->toArray();
+        foreach($this->editedConditions as $condition){
+            array_push($this->selectedConditions, $condition['nivEtud_id']);
+        }
+
         $this->editDebouche = [];
         $this->editProgram = [];
         $this->pageStatus = 'edit';
@@ -224,10 +267,11 @@ class Formation extends Component
                         ->where('nome', 'like', '%'.$this->search.'%')
                         ->where('typeFormation_id','like','%'.$this->perPage.'%')
                         ->get();
-
+        $conditions = nivEtud::all();
         return view('livewire.admin.formations.index', [
             'typeFormations' => $typeFormations,
-            'formations' => $formations
+            'formations' => $formations,
+            'conditions' => $conditions,
         ])
                 ->extends('livewire.admin.app')
                 ->section('content');

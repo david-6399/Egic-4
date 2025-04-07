@@ -19,25 +19,27 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Formation Name :</label>
-                                <input type="text"
-                                    class="form-control @error('formation.nome') is-invalid @enderror"
+                                <input type="text" class="form-control @error('formation.nome') is-invalid @enderror"
                                     placeholder="Proudct Name..." wire:model='formation.nome'>
                             </div>
                             <div class="form-group">
                                 <label>La Durée de la formation</label>
-                                <input type="number" class="form-control @error('formation.duree') is-invalid @enderror"
+                                <input type="number"
+                                    class="form-control @error('formation.duree') is-invalid @enderror"
                                     placeholder="Unit Price..." wire:model='formation.duree'>
                             </div>
                             <div class="form-group">
                                 <label for="productQuantity">Tarif De la formation</label>
-                                <input type="number" class="form-control @error('formation.tarif') is-invalid @enderror"
+                                <input type="number"
+                                    class="form-control @error('formation.tarif') is-invalid @enderror"
                                     id="productQuantity" placeholder="Quantity..." wire:model='formation.tarif'>
                             </div>
 
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input form-control @error('addImage') is-invalid @enderror" 
-                                    id="productImage" wire:model='addImage'>
+                                    <input type="file"
+                                        class="custom-file-input form-control @error('addImage') is-invalid @enderror"
+                                        id="productImage" wire:model='addImage'>
                                     @error('addImage')
                                         <div class="text-danger ">
                                             {{ $message }}
@@ -53,7 +55,8 @@
                         <div class="card-body">
                             <div class="border" style="height: 300px; width:300px; border-radius:5px">
                                 @if ($addImage)
-                                    <img src="{{ $addImage->temporaryUrl() }}" style="height: 300px; width:300px; border-radius : 20px; border : solid 1px #007BFF">
+                                    <img src="{{ $addImage->temporaryUrl() }}"
+                                        style="height: 300px; width:300px; border-radius : 20px; border : solid 1px #007BFF">
                                 @endif
                             </div>
                             <div wire:loading wire:target="">Uploading...</div>
@@ -66,9 +69,6 @@
 
     <div class="col-lg-12 ">
         <div class="row">
-
-            
-
             {{-- Start Program section --}}
             <div class="col-lg-6">
                 <form>
@@ -78,10 +78,12 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <input type="text" class="form-control @error('program.titre')
+                                <input type="text"
+                                    class="form-control @error('program.titre')
                                     is-invalid
-                                @enderror" placeholder="Add Title ..."
-                                    wire:model.lazy='program.titre' wire:keydown.enter.prevent='addProgramToList()'>
+                                @enderror"
+                                    placeholder="Add Title ..." wire:model.lazy='program.titre'
+                                    wire:keydown.enter.prevent='addProgramToList()'>
                             </div>
                             @foreach ($listOfPrograms as $key => $index)
                                 <div class="callout callout-warning d-flex justify-content-between">
@@ -108,10 +110,12 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Les type</label>
-                                <input type="text" class="form-control @error('program.titre')
+                                <input type="text"
+                                    class="form-control @error('program.titre')
                                     is-invalid
-                                @enderror" placeholder="Ajouter un nouveau type"
-                                    wire:model='newTypeFormation' wire:keydown.enter.prevent='addTypeFormation()'>
+                                @enderror"
+                                    placeholder="Ajouter un nouveau type" wire:model='newTypeFormation'
+                                    wire:keydown.enter.prevent='addTypeFormation()'>
 
                                 <input type="text" class="form-control" placeholder="Category Name ..." hidden>
                                 <select
@@ -138,28 +142,71 @@
         </div>
 
     </div>
-    <div class="col-lg-6">
-        <form>
-            <div class="card card-primary ">
-                <div class="card-header">
-                    <h3 class="card-title">Ajputer les débouchés</h3>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Add Title ..."
-                            wire:model='debouche.titre' wire:keydown.enter.prevent='addDeboucheToList()'>
-                    </div>
-                    @foreach ($listOfDebouches as $key => $index)
-                        <div class="callout callout-warning d-flex justify-content-between">
-                            <h5>{{ $index }}</h5>
-                            <div wire:click='deleteDebouche({{ $key }})'>
-                                <img src="{{ asset('adminImages/delete.png') }}" alt="Delete" style=" width:25px;">
-                            </div>
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-6">
+                <form>
+                    <div class="card card-primary ">
+                        <div class="card-header">
+                            <h3 class="card-title">Ajputer les débouchés</h3>
                         </div>
-                    @endforeach
-                </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Add Title ..."
+                                    wire:model='debouche.titre' wire:keydown.enter.prevent='addDeboucheToList()'>
+                            </div>
+                            @foreach ($listOfDebouches as $key => $index)
+                                <div class="callout callout-warning d-flex justify-content-between">
+                                    <h5>{{ $index }}</h5>
+                                    <div wire:click='deleteDebouche({{ $key }})'>
+                                        <img src="{{ asset('adminImages/delete.png') }}" alt="Delete"
+                                            style=" width:25px;">
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+            <div class="col-lg-6">
+                <form>
+                    <div class="card card-primary ">
+                        <div class="card-header">
+                            <h3 class="card-title">Ajputer les condition d'access'</h3>
+                        </div>
+                        <div class="card-body d-block">
+                            <div class="d-flex my-2">
+                                <button class="btn btn-primary"
+                                    wire:click.prevent='showInputFaild()'>Create..</button>
+                                <div class="w-100">
+                                    @if ($showInput == true)
+                                        <input type="text"
+                                            class="form-control mx-2 @error('condition')
+                                            is-invalid
+                                        @enderror"
+                                            placeholder="Add Title ..." wire:model='condition'
+                                            wire:keydown.enter.prevent='addNewCondition'>
+                                        @error('condition')
+                                            <div class="text-danger mx-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    @endif
+                                </div>
+                            </div>
+                            @foreach ($conditions as $condition)
+                                <div class="d-block">
+                                    <input type="checkbox" id="condition-{{ $condition->id }}"
+                                    wire:model="selectedConditions" value="{{ $condition->id }}">
+                                    <label for="condition-{{ $condition->id }}">{{ $condition->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
     </div>
 
 </div>

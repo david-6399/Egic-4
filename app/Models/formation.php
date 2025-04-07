@@ -46,4 +46,7 @@ class formation extends Model
         return $this->hasMany(User::class, 'formation_subs_id', 'id');
     }
 
+    public function nivEtuds(){
+        return $this->belongsToMany(nivEtud::class, 'formation_niv_etuds', 'formation_id', 'nivEtud_id');
+    }
 }
